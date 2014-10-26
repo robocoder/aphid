@@ -21,28 +21,6 @@ namespace Aphid
             Environment.Exit(0);
         }
 
-        static string GetCodeExcerpt(string code, AphidToken token)
-        {
-            var matches = Regex.Matches(code, @"(\r\n)|\r|\n").OfType<Match>().ToArray();
-            var firstAfter = matches.FirstOrDefault(x => x.Index > token.Index);
-
-            int line;
-
-            if (firstAfter != null)
-            {
-                line = Array.IndexOf(matches, firstAfter);
-            }
-            else
-            {
-                line = matches.Count();
-            }
-
-            var lines = code.Replace("\r\n", "\n").Replace('\r', '\n').Replace("\n", "\r\n").Split(new[] { "\r\n" }, StringSplitOptions.None);
-            var loc = lines[line];
-
-            return string.Format("({0}) {1}", line, loc);
-        }
-
         static void Main(string[] args)
         {
             if (args.Length != 1)
@@ -67,7 +45,14 @@ namespace Aphid
             }
             catch (AphidParserException exception)
             {
-                Console.WriteLine("Unexpected {0}\r\n\r\n{1}\r\n", exception.UnexpectedToken.Lexeme, GetCodeExcerpt(code, exception.UnexpectedToken));
+                var line = TokenHelper.GetIndexPosition(code, exception.UnexpectedToken.Index);
+                
+                Console.WriteLine(
+                    "Unexpected {0} {1} on line {2}\r\n\r\n{3}\r\n", 
+                    exception.UnexpectedToken.TokenType.ToString().ToLower(),
+                    exception.UnexpectedToken.Lexeme,
+                    line.Item1,
+                    TokenHelper.GetCodeExcerpt(code, exception.UnexpectedToken));
             }
             catch (AphidRuntimeException exception)
             {

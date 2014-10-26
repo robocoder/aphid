@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Components.Aphid.Lexer
@@ -246,6 +247,36 @@ namespace Components.Aphid.Lexer
             }
 
             return null;
+        }
+
+        public static string GetCodeExcerpt(string code, AphidToken token, int surroundingLines = 2)
+        {
+            var matches = Regex.Matches(code, @"(\r\n)|\r|\n").OfType<Match>().ToArray();
+            var firstAfter = matches.FirstOrDefault(x => x.Index > token.Index);
+
+            int line;
+
+            if (firstAfter != null)
+            {
+                line = Array.IndexOf(matches, firstAfter);
+            }
+            else
+            {
+                line = matches.Count();
+            }
+
+            var lines = code.Replace("\r\n", "\n").Replace('\r', '\n').Replace("\n", "\r\n").Split(new[] { "\r\n" }, StringSplitOptions.None);
+            var sb = new StringBuilder();
+
+            for (int i = line - surroundingLines; i < line + surroundingLines + 1; i++)
+            {
+                if (i > 0 && i < lines.Length)
+                {
+                    sb.AppendLine(string.Format("({0}) {1}", i, lines[i]));
+                }
+            }
+
+            return sb.ToString();
         }
     }
 }
