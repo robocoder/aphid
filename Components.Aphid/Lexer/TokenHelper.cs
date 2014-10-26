@@ -15,7 +15,7 @@ namespace Components.Aphid.Lexer
             ReturnCarriage,
         }
 
-        public static Tuple<int, int> GetLineCol(string text, int index)
+        public static Tuple<int, int> GetIndexPosition(string text, int index)
         {
             var state = LineState.RegularChar;
             var preceding = text.Remove(index);
@@ -194,7 +194,7 @@ namespace Components.Aphid.Lexer
 
                 if (rightBraceIndex != -1)
                 {
-                    var rightLineCol = TokenHelper.GetLineCol(text, rightBraceIndex);
+                    var rightLineCol = TokenHelper.GetIndexPosition(text, rightBraceIndex);
 
                     return new[]
                     {
@@ -230,7 +230,7 @@ namespace Components.Aphid.Lexer
 
                 if (leftBraceIndex != -1)
                 {
-                    var leftLineCol = TokenHelper.GetLineCol(text, leftBraceIndex);
+                    var leftLineCol = TokenHelper.GetIndexPosition(text, leftBraceIndex);
 
                     return new[]
                     {
