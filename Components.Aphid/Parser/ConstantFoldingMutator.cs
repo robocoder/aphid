@@ -14,6 +14,11 @@ namespace Components.Aphid.Parser
                 binOp.RightOperand.GetType() == typeof(T);
         }
 
+        private decimal GetNumber(Expression exp)
+        {
+            return ((NumberExpression)exp).Value;
+        }
+
         private string GetString(Expression exp)
         {
             return ((StringExpression)exp).Value;
@@ -40,13 +45,33 @@ namespace Components.Aphid.Parser
 
                 if (left[0] != right[0])
                 {
-                    throw new NotImplementedException();
+                    hasChanged = false;
+
+                    return null;
                 }
 
                 return new List<Expression> 
                 { 
                     new StringExpression(left.Remove(left.Length - 1) + right.Substring(1))
                 };
+            }
+            else if (OperandsAre<NumberExpression>(binOp))
+            {
+                var left = GetNumber(binOp.LeftOperand);
+                var right = GetNumber(binOp.RightOperand);
+
+                switch (binOp.Operator)
+                {
+                    case AphidTokenType.AdditionOperator:
+                        return new List<Expression> { new NumberExpression(left + right) };
+
+                    case AphidTokenType.MinusOperator:
+                        return new List<Expression> { new NumberExpression(left - right) };
+
+                    default:
+                        hasChanged = false;
+                        break;
+                }
             }
             else
             {
