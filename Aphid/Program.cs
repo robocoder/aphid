@@ -45,14 +45,7 @@ namespace Aphid
             }
             catch (AphidParserException exception)
             {
-                var line = TokenHelper.GetIndexPosition(code, exception.UnexpectedToken.Index);
-                
-                Console.WriteLine(
-                    "Unexpected {0} {1} on line {2}\r\n\r\n{3}\r\n", 
-                    exception.UnexpectedToken.TokenType.ToString().ToLower(),
-                    exception.UnexpectedToken.Lexeme,
-                    line.Item1,
-                    TokenHelper.GetCodeExcerpt(code, exception.UnexpectedToken));
+                Console.WriteLine(ParserErrorMessage.Create(code, exception));
             }
             catch (AphidRuntimeException exception)
             {
