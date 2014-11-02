@@ -36,6 +36,7 @@ namespace Components.Aphid.VSPackage
 
                 case AphidTokenType.Number:
                 case AphidTokenType.HexNumber:
+                case AphidTokenType.BinaryNumber:
                     tokenInfo.Type = TokenType.Literal;
                     tokenInfo.Color = TokenColor.Number;
                     break;
