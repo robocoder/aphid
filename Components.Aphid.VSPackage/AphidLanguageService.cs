@@ -61,7 +61,8 @@ namespace Components.Aphid.VSPackage
             }
             catch (AphidParserException e)
             {
-                var lineCol = TokenHelper.GetLineCol(req.Text, e.UnexpectedToken.Index);
+                var lineCol = TokenHelper.GetIndexPosition(req.Text, e.UnexpectedToken.Index);
+
                 var span = new TextSpan()
                 {
                     iStartLine = lineCol.Item1,
@@ -164,7 +165,7 @@ namespace Components.Aphid.VSPackage
 
                     if (rightBraceIndex != -1)
                     {
-                        var rightLineCol = TokenHelper.GetLineCol(req.Text, rightBraceIndex);
+                        var rightLineCol = TokenHelper.GetIndexPosition(req.Text, rightBraceIndex);
 
                         req.Sink.MatchPair(CreateSpan(req.Line, req.Col - 1), CreateSpan(rightLineCol.Item1, rightLineCol.Item2), 1);
                     }
