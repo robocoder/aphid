@@ -21,6 +21,7 @@ namespace Components.Aphid.Lexer
         AssignmentOperator,
         BinaryAndEqualOperator,
         BinaryAndOperator,
+        BinaryNumber,
         BinaryOrOperator,
         breakKeyword,
         catchKeyword,
@@ -681,6 +682,39 @@ TokenType == AphidTokenType.finallyKeyword;
                                         while (NextChar());
 
                                         return AphidTokenType.HexNumber;
+
+                                        break;
+
+                                    case 'b':
+
+
+                                        if (!NextChar())
+                                        {
+                                            return AphidTokenType.Unknown;
+                                        }
+
+                                        state = 0;
+
+                                        do
+                                        {
+                                            if ((state == 0 || state == 1) && (currentChar == '0' || currentChar == '1'))
+                                                state = 1;
+                                            else if (state == 1)
+                                            {
+                                                charIndex--;
+
+                                                return AphidTokenType.BinaryNumber;
+                                            }
+                                            else
+                                            {
+                                                charIndex--;
+
+                                                return AphidTokenType.Unknown;
+                                            }
+                                        }
+                                        while (NextChar());
+
+                                        return AphidTokenType.BinaryNumber;
 
                                         break;
 

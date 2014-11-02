@@ -85,6 +85,7 @@ ret
                 { code: idCode },
                 { regex: "0", code: getNumber('NextChar();\r\nstate = 1;', 'return AphidTokenType.Number;') },
                 { regex: "0x", code: zeroXCode },
+				{ regex: "0b", code: zeroBCode },
                 { code: getNumber(
 					'state = 0;', 
 					'if (state == 1 || state == 3 || state == 5) { return AphidTokenType.Number; }') },

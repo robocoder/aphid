@@ -70,6 +70,36 @@ zeroXCode = "
 	return AphidTokenType.HexNumber;
 ";
 
+zeroBCode = "
+	if (!NextChar())
+	{
+		return AphidTokenType.Unknown;
+	}
+
+    state = 0;
+
+    do
+    {    
+        if ((state == 0 || state == 1) && (currentChar == '0' || currentChar == '1'))
+            state = 1;        
+        else if (state == 1)
+        {
+            charIndex--;
+
+            return AphidTokenType.BinaryNumber;
+        }
+        else
+        {  
+            charIndex--;
+
+            return AphidTokenType.Unknown;
+        }
+    }
+    while (NextChar());
+
+	return AphidTokenType.BinaryNumber;
+";
+
 singleLineCommentCode = "
     state = 0;
     while (NextChar())
