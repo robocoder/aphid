@@ -75,21 +75,26 @@ namespace Components.Aphid.VSPackage
                     break;
 
                 case AphidTokenType.AdditionOperator:
+                case AphidTokenType.AggregateOperator:
                 case AphidTokenType.AndOperator:
+                case AphidTokenType.AnyOperator:
                 case AphidTokenType.AssignmentOperator:
+                case AphidTokenType.BinaryAndEqualOperator:
                 case AphidTokenType.BinaryAndOperator:
                 case AphidTokenType.BinaryOrOperator:
                 case AphidTokenType.ColonOperator:
                 case AphidTokenType.ComplementOperator:
+                case AphidTokenType.ConditionalOperator:
                 case AphidTokenType.DecrementOperator:
+                case AphidTokenType.DistinctOperator:
                 case AphidTokenType.DivisionEqualOperator:
                 case AphidTokenType.DivisionOperator:
-                case AphidTokenType.EqualityOperator:                
+                case AphidTokenType.EqualityOperator:
                 case AphidTokenType.GreaterThanOperator:
                 case AphidTokenType.GreaterThanOrEqualOperator:
                 case AphidTokenType.IncrementOperator:
                 case AphidTokenType.LessThanOperator:
-                case AphidTokenType.LessThanOrEqualOperator:                
+                case AphidTokenType.LessThanOrEqualOperator:
                 case AphidTokenType.MinusEqualOperator:
                 case AphidTokenType.MinusOperator:
                 case AphidTokenType.ModulusEqualOperator:
@@ -102,6 +107,12 @@ namespace Components.Aphid.VSPackage
                 case AphidTokenType.OrOperator:
                 case AphidTokenType.PipelineOperator:
                 case AphidTokenType.PlusEqualOperator:
+                case AphidTokenType.RangeOperator:
+                case AphidTokenType.SelectManyOperator:
+                case AphidTokenType.SelectOperator:
+                case AphidTokenType.ShiftLeftEqualOperator:
+                case AphidTokenType.ShiftRightEqualOperator:
+                case AphidTokenType.WhereOperator:
                 case AphidTokenType.XorEqualOperator:
                 case AphidTokenType.XorOperator:
                     tokenInfo.Type = TokenType.Operator;                    
