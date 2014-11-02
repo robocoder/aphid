@@ -57,8 +57,11 @@
 				"MultiplicationEqualOperator",
 				"DivisionEqualOperator",
 				"ModulusEqualOperator",
+				"BinaryAndEqualOperator",
 				"OrEqualOperator",
 				"XorEqualOperator",
+				"ShiftLeftEqualOperator",
+				"ShiftRightEqualOperator",
 			]
         },  
     ]
