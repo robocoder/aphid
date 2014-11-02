@@ -188,6 +188,7 @@ Components.Aphid/Parser/AphidParser.g.cs -text
 Components.Aphid/Parser/AphidParserException.cs -text
 Components.Aphid/Parser/ArrayAccessExpression.cs -text
 Components.Aphid/Parser/ArrayExpression.cs -text
+Components.Aphid/Parser/BinaryNumber.cs -text
 Components.Aphid/Parser/BinaryOperatorExpression.cs -text
 Components.Aphid/Parser/BooleanExpression.cs -text
 Components.Aphid/Parser/BreakExpression.cs -text

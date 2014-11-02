@@ -83,6 +83,7 @@
     <Compile Include="Parser\AphidMacroMutator.cs" />
     <Compile Include="Parser\AphidMutator.cs" />
     <Compile Include="Parser\ArrayExpression.cs" />
+    <Compile Include="Parser\BinaryNumber.cs" />
     <Compile Include="Parser\BinaryOperatorExpression.cs" />
     <Compile Include="Parser\BooleanExpression.cs" />
     <Compile Include="Parser\BreakExpression.cs" />
