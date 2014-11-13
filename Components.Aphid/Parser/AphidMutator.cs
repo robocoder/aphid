@@ -162,6 +162,14 @@ namespace Components.Aphid.Parser
 
                 expanded.Add(new ObjectExpression(pairs));
             }
+            else if (expression is ExtendExpression)
+            {
+                var extendExp = (ExtendExpression)expression;
+
+                expanded.Add(new ExtendExpression(
+                    extendExp.Type,
+                    (ObjectExpression)Mutate(extendExp.Object).Single()));
+            }
             else if (expression is IParentNode)
             {
                 throw new InvalidOperationException();
