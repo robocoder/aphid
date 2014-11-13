@@ -10,6 +10,15 @@ namespace Components.Aphid.Parser
     {
         public List<BinaryOperatorExpression> Pairs { get; set; }
 
+        public ObjectExpression()
+        {
+        }
+
+        public ObjectExpression(List<BinaryOperatorExpression> pairs)
+        {
+            Pairs = pairs;
+        }
+
         public override string ToString()
         {
             return string.Format(
