@@ -95,6 +95,16 @@ namespace Components.Aphid.Parser
                     Mutate(forExp.Afterthought).Single(),
                     Mutate(forExp.Body)));
             }
+            else if (expression is ForEachExpression)
+            {
+                var forEachExp = (ForEachExpression)expression;
+
+                expanded.Add(
+                    new ForEachExpression(
+                        Mutate(forEachExp.Collection).Single(),
+                        Mutate(forEachExp.Element).Single(),
+                        Mutate(forEachExp.Body)));
+            }
             else if (expression is ControlFlowExpression)
             {
                 var cfExp = (ControlFlowExpression)expression;
