@@ -110,6 +110,12 @@ namespace Components.Aphid.Parser
 
                 expanded.Add(new LoadScriptExpression(Mutate(lsExp.FileExpression).Single()));
             }
+            else if (expression is LoadLibraryExpression)
+            {
+                var llExp = (LoadLibraryExpression)expression;
+
+                expanded.Add(new LoadLibraryExpression(Mutate(llExp.LibraryExpression).Single()));
+            }
             else if (expression is FunctionExpression)
             {
                 var funcExp = (FunctionExpression)expression;
