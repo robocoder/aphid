@@ -154,6 +154,14 @@ namespace Components.Aphid.Parser
                     Mutate(arrayAccessExp.KeyExpression).Single()));
                 
             }
+            else if (expression is ObjectExpression)
+            {
+                var pairs = ((ObjectExpression)expression).Pairs
+                    .Select(x => (BinaryOperatorExpression)Mutate(x).Single())
+                    .ToList();
+
+                expanded.Add(new ObjectExpression(pairs));
+            }
             else if (expression is IParentNode)
             {
                 throw new InvalidOperationException();
