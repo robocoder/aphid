@@ -170,6 +170,17 @@ namespace Components.Aphid.Parser
                     extendExp.Type,
                     (ObjectExpression)Mutate(extendExp.Object).Single()));
             }
+            else if (expression is TernaryOperatorExpression)
+            {
+                var terExp = (TernaryOperatorExpression)expression;
+
+                expanded.Add(
+                    new TernaryOperatorExpression(
+                        terExp.Operator,
+                        Mutate(terExp.FirstOperand).Single(),
+                        Mutate(terExp.SecondOperand).Single(),
+                        Mutate(terExp.ThirdOperand).Single()));
+            }
             else if (expression is IParentNode)
             {
                 throw new InvalidOperationException();
