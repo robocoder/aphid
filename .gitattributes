@@ -17,7 +17,6 @@ Aphid/TcpExample.alx -text
 AphidCodeGenerator/Aphid.Code.alx -text
 AphidCodeGenerator/Aphid.Tmpl.alx -text
 AphidCodeGenerator/Aphid.alx -text
-AphidCodeGenerator/Aphid.ll -text
 AphidCodeGenerator/AphidBinaryOperatorExpressionRule.cs -text
 AphidCodeGenerator/AphidCodeGenerator.csproj -text
 AphidCodeGenerator/AphidCodeGenerator.csproj.vspscc -text
