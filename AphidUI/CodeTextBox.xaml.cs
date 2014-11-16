@@ -98,7 +98,8 @@ namespace AphidUI
 
         void CodeEditor_TextChanged(object sender, RoutedEventArgs e)
         {
-            Text = _codeCanvas.Text;
+            SetValue(TextProperty, _codeCanvas.Text);
+            //Text = _codeCanvas.Text;
         }
 
         private void Viewer_SizeChanged(object sender, SizeChangedEventArgs e)
