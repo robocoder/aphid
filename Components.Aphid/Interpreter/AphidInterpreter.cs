@@ -53,7 +53,7 @@ namespace Components.Aphid.Interpreter
             _loader = new AphidLoader(this);
         }
 
-        private AphidRuntimeException CreateUndefinedMemberException(Expression expression, Expression memberExpression)
+        private AphidRuntimeException CreateUndefinedMemberException(AphidExpression expression, AphidExpression memberExpression)
         {
             return new AphidRuntimeException(
                     "Undefined member {0} in expression {1}",
@@ -110,7 +110,7 @@ namespace Components.Aphid.Interpreter
             return false;
         }
 
-        private void InterpretChild(List<Expression> block)
+        private void InterpretChild(List<AphidExpression> block)
         {
             EnterChildScope();
             Interpret(block, false);
@@ -667,7 +667,7 @@ namespace Components.Aphid.Interpreter
             }
             else
             {
-                Func<Expression, object> selector;
+                Func<AphidExpression, object> selector;
 
                 if (func.UnwrapParameters)
                 {
@@ -935,7 +935,7 @@ namespace Components.Aphid.Interpreter
             var partialFunc = new AphidFunction()
             {
                 Args = partialArgs,
-                Body = new List<Expression> 
+                Body = new List<AphidExpression> 
                 {
                     new UnaryOperatorExpression(AphidTokenType.retKeyword,
                         new CallExpression(
@@ -1124,7 +1124,7 @@ namespace Components.Aphid.Interpreter
             }
         }
 
-        private object InterpretExpression(Expression expression)
+        private object InterpretExpression(AphidExpression expression)
         {
             if (expression is BinaryOperatorExpression)
             {
@@ -1244,7 +1244,7 @@ namespace Components.Aphid.Interpreter
             }
         }
 
-        public void Interpret(List<Expression> expressions, bool resetIsReturning = true)
+        public void Interpret(List<AphidExpression> expressions, bool resetIsReturning = true)
         {
             foreach (var expression in expressions)
             {

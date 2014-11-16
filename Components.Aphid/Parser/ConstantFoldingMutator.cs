@@ -14,17 +14,17 @@ namespace Components.Aphid.Parser
                 binOp.RightOperand.GetType() == typeof(T);
         }
 
-        private decimal GetNumber(Expression exp)
+        private decimal GetNumber(AphidExpression exp)
         {
             return ((NumberExpression)exp).Value;
         }
 
-        private string GetString(Expression exp)
+        private string GetString(AphidExpression exp)
         {
             return ((StringExpression)exp).Value;
         }
 
-        protected override List<Expression> MutateCore(Expression expression, out bool hasChanged)
+        protected override List<AphidExpression> MutateCore(AphidExpression expression, out bool hasChanged)
         {
             var binOp = expression as BinaryOperatorExpression;
 
@@ -50,7 +50,7 @@ namespace Components.Aphid.Parser
                     return null;
                 }
 
-                return new List<Expression> 
+                return new List<AphidExpression> 
                 { 
                     new StringExpression(left.Remove(left.Length - 1) + right.Substring(1))
                 };
@@ -63,10 +63,10 @@ namespace Components.Aphid.Parser
                 switch (binOp.Operator)
                 {
                     case AphidTokenType.AdditionOperator:
-                        return new List<Expression> { new NumberExpression(left + right) };
+                        return new List<AphidExpression> { new NumberExpression(left + right) };
 
                     case AphidTokenType.MinusOperator:
-                        return new List<Expression> { new NumberExpression(left - right) };
+                        return new List<AphidExpression> { new NumberExpression(left - right) };
 
                     default:
                         hasChanged = false;

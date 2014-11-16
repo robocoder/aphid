@@ -20,7 +20,7 @@ namespace AphidCodeGenerator
         {
             var parseOperand = CreateParseOperand(rule);
             var operandRef = CodeHelper.VarRef("operand");
-            var operandVar = CodeHelper.VarDecl(typeof(Expression), "operand", parseOperand);
+            var operandVar = CodeHelper.VarDecl(typeof(AphidExpression), "operand", parseOperand);
             var curTokenTypeRef = CodeHelper.PropRef("_currentToken").GetProperty("TokenType");
             var tokenTypeRef = CodeHelper.TypeRefExp<AphidTokenType>();
             var operatorRef = CodeHelper.VarRef("op");
@@ -47,9 +47,10 @@ namespace AphidCodeGenerator
 
             var method = new CodeMemberMethod()
             {
-                ReturnType = CodeHelper.TypeRef<Expression>(),
+                ReturnType = CodeHelper.TypeRef<AphidExpression>(),
                 Name = "Parse" + rule.Name,
             };
+
             method.Statements.Add(operandVar);
             method.Statements.Add(whileStmt);
             method.Statements.Add(CodeHelper.Return(operandRef));

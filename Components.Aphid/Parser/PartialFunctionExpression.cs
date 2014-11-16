@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Components.Aphid.Parser
 {
-    public class PartialFunctionExpression : Expression, IParentNode
+    public class PartialFunctionExpression : AphidExpression, IParentNode
     {
         public CallExpression Call { get; set; }
 
@@ -18,7 +18,7 @@ namespace Components.Aphid.Parser
             Call = call;
         }
 
-        public IEnumerable<Expression> GetChildren()
+        public IEnumerable<AphidExpression> GetChildren()
         {
             return new[] { Call };
         }

@@ -16,7 +16,7 @@ namespace Components.Aphid.Parser
             get { return _loader; }
         }
 
-        protected override List<Expression> MutateCore(Expression expression, out bool hasChanged)
+        protected override List<AphidExpression> MutateCore(AphidExpression expression, out bool hasChanged)
         {
             var loadExp = expression as LoadScriptExpression;
 

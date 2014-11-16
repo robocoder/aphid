@@ -2,7 +2,7 @@ using System;
 
 namespace Components.Aphid.Parser
 {
-    public class NumberExpression : Expression
+    public class NumberExpression : AphidExpression
     {
         public decimal Value { get; set; }
 

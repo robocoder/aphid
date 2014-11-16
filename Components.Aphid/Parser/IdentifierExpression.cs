@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Components.Aphid.Parser
 {
-    public class IdentifierExpression : Expression
+    public class IdentifierExpression : AphidExpression
     {
         public string Identifier { get; set; }
 

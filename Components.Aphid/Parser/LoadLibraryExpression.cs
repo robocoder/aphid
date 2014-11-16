@@ -5,16 +5,16 @@ using System.Text;
 
 namespace Components.Aphid.Parser
 {
-    public class LoadLibraryExpression : Expression, IParentNode
+    public class LoadLibraryExpression : AphidExpression, IParentNode
     {
-        public Expression LibraryExpression { get; set; }
+        public AphidExpression LibraryExpression { get; set; }
 
-        public LoadLibraryExpression(Expression libraryExpression)
+        public LoadLibraryExpression(AphidExpression libraryExpression)
         {
             LibraryExpression = libraryExpression;
         }
 
-        public IEnumerable<Expression> GetChildren()
+        public IEnumerable<AphidExpression> GetChildren()
         {
             return new[] { LibraryExpression };
         }

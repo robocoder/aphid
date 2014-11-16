@@ -2,7 +2,7 @@ using System;
 
 namespace Components.Aphid.Parser
 {
-    public abstract class Expression : AphidNode
+    public abstract class AphidExpression : AphidNode
     {
     }
 }

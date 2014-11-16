@@ -9,14 +9,14 @@ namespace Components.Aphid.Parser
     {
         public bool HasMutated { get; private set; }
 
-        protected abstract List<Expression> MutateCore(Expression expression, out bool hasChanged);
+        protected abstract List<AphidExpression> MutateCore(AphidExpression expression, out bool hasChanged);
 
-        protected virtual List<Expression> OnMutate(List<Expression> ast)
+        protected virtual List<AphidExpression> OnMutate(List<AphidExpression> ast)
         {
             return ast;
         }
 
-        public List<Expression> Mutate(List<Expression> ast)
+        public List<AphidExpression> Mutate(List<AphidExpression> ast)
         {
             if (ast == null)
             {
@@ -25,7 +25,7 @@ namespace Components.Aphid.Parser
 
             ast = OnMutate(ast);
 
-            var ast2 = new List<Expression>();
+            var ast2 = new List<AphidExpression>();
 
             foreach (var exp in ast)
             {
@@ -35,7 +35,7 @@ namespace Components.Aphid.Parser
             return ast2;
         }
 
-        public List<Expression> Mutate(Expression expression)
+        public List<AphidExpression> Mutate(AphidExpression expression)
         {
             bool hasChanged;
             var mutated = MutateCore(expression, out hasChanged);
@@ -46,7 +46,7 @@ namespace Components.Aphid.Parser
                 return mutated.SelectMany(Mutate).ToList();
             }
 
-            var expanded = new List<Expression>();
+            var expanded = new List<AphidExpression>();
 
             if (expression is CallExpression)
             {
@@ -193,9 +193,9 @@ namespace Components.Aphid.Parser
             return expanded;
         }
 
-        public List<Expression> MutateRecursively(List<Expression> expression)
+        public List<AphidExpression> MutateRecursively(List<AphidExpression> expression)
         {
-            List<Expression> ast = expression;
+            List<AphidExpression> ast = expression;
 
             do
             {

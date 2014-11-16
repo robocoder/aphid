@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Components.Aphid.Parser
 {
-    public class ExtendExpression : Expression, IParentNode
+    public class ExtendExpression : AphidExpression, IParentNode
     {
         public string Type { get; set; }
 
@@ -17,7 +17,7 @@ namespace Components.Aphid.Parser
             Object = obj;
         }
 
-        public IEnumerable<Expression> GetChildren()
+        public IEnumerable<AphidExpression> GetChildren()
         {
             return new[] { Object };
         }

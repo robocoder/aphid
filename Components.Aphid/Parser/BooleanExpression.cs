@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Components.Aphid.Parser
 {
-    public class BooleanExpression : Expression
+    public class BooleanExpression : AphidExpression
     {
         public bool Value { get; set; }
 

@@ -269,7 +269,7 @@ namespace AphidUI.ViewModels
                 tokens.Add(new AphidToken(AphidTokenType.EndOfStatement, "", 0));
             }
 
-            List<Components.Aphid.Parser.Expression> ast = null;
+            List<Components.Aphid.Parser.AphidExpression> ast = null;
 
             try
             {
@@ -353,7 +353,7 @@ namespace AphidUI.ViewModels
 
             var tokens = new AphidLexer(Code).GetTokens();
 
-            List<Components.Aphid.Parser.Expression> ast = null;
+            List<Components.Aphid.Parser.AphidExpression> ast = null;
 
             try
             {

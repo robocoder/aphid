@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Components.Aphid.Parser
 {
-    public class FunctionExpression : Expression, IParentNode
+    public class FunctionExpression : AphidExpression, IParentNode
     {
         public List<IdentifierExpression> Args { get; set; }
 
-        public List<Expression> Body { get; set; }
+        public List<AphidExpression> Body { get; set; }
 
         public override string ToString ()
         {
@@ -19,7 +19,7 @@ namespace Components.Aphid.Parser
                 Body.Select(x => x.ToString()).DefaultIfEmpty().Aggregate((x, y) => x + " " + y));
         }
 
-        public IEnumerable<Expression> GetChildren()
+        public IEnumerable<AphidExpression> GetChildren()
         {
             return Args.Concat(Body);
         }

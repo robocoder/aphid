@@ -7,22 +7,22 @@ using System.Threading.Tasks;
 
 namespace Components.Aphid.Parser
 {
-    public class ControlFlowExpression : Expression, IParentNode
+    public class ControlFlowExpression : AphidExpression, IParentNode
     {
         public AphidTokenType Type { get; set; }
 
-        public Expression Condition { get; set; }
+        public AphidExpression Condition { get; set; }
 
-        public List<Expression> Body { get; set; }
+        public List<AphidExpression> Body { get; set; }
 
-        public ControlFlowExpression(AphidTokenType type, Expression condition, List<Expression> body)
+        public ControlFlowExpression(AphidTokenType type, AphidExpression condition, List<AphidExpression> body)
         {
             Type = type;
             Condition = condition;
             Body = body;
         }
 
-        public virtual IEnumerable<Expression> GetChildren()
+        public virtual IEnumerable<AphidExpression> GetChildren()
         {
             return new[] { Condition }.Concat(Body);
         }

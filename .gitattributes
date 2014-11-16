@@ -105,6 +105,7 @@ Components.Aphid.Tests.Integration/QueryTests.cs -text
 Components.Aphid.Tests.Integration/ScopeTests.cs -text
 Components.Aphid.Tests.Integration/StringTests.cs -text
 Components.Aphid.Tests.Integration/ThisTests.cs -text
+Components.Aphid.Tests.Integration/packages.config -text
 Components.Aphid.VSPackage/AphidAuthoringScope.cs -text
 Components.Aphid.VSPackage/AphidDeclaration.cs -text
 Components.Aphid.VSPackage/AphidDeclarations.cs -text
@@ -353,3 +354,8 @@ Samples/VariableSetSample/Program.cs -text
 Samples/VariableSetSample/Properties/AssemblyInfo.cs -text
 Samples/VariableSetSample/VariableSetSample.csproj -text
 Samples/VariableSetSample/VariableSetSample.csproj.vspscc -text
+packages/NUnit.2.6.3/NUnit.2.6.3.nupkg -text svneol=unset#unset
+packages/NUnit.2.6.3/lib/nunit.framework.dll -text svneol=unset#unset
+packages/NUnit.2.6.3/lib/nunit.framework.xml -text
+packages/NUnit.2.6.3/license.txt -text
+packages/repositories.config -text

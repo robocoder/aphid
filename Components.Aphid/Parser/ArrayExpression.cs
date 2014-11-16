@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Components.Aphid.Parser
 {
-    public class ArrayExpression : Expression, IParentNode
+    public class ArrayExpression : AphidExpression, IParentNode
     {
-        public List<Expression> Elements { get; set; }
+        public List<AphidExpression> Elements { get; set; }
 
-        public IEnumerable<Expression> GetChildren()
+        public IEnumerable<AphidExpression> GetChildren()
         {
             return Elements;
         }

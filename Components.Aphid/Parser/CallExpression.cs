@@ -5,25 +5,25 @@ using System.Text;
 
 namespace Components.Aphid.Parser
 {
-    public class CallExpression : Expression, IParentNode
+    public class CallExpression : AphidExpression, IParentNode
     {
-        public Expression FunctionExpression { get; set; }
+        public AphidExpression FunctionExpression { get; set; }
 
-        public IEnumerable<Expression> Args { get; set; }
+        public IEnumerable<AphidExpression> Args { get; set; }
 
-        public CallExpression(Expression functionExpression, IEnumerable<Expression> args)
+        public CallExpression(AphidExpression functionExpression, IEnumerable<AphidExpression> args)
         {
             FunctionExpression = functionExpression;
             Args = args;
         }
 
-        public CallExpression(Expression functionExpression)
-            : this (functionExpression, new Expression[0])
+        public CallExpression(AphidExpression functionExpression)
+            : this (functionExpression, new AphidExpression[0])
         {
             
         }
 
-        public CallExpression(Expression functionExpression, Expression expression)
+        public CallExpression(AphidExpression functionExpression, AphidExpression expression)
             : this(functionExpression, new[] { expression })
         {
         }
@@ -33,7 +33,7 @@ namespace Components.Aphid.Parser
             return string.Format("{0}({1})", FunctionExpression, Args.Select(x => x.ToString()).DefaultIfEmpty().Aggregate((x, y) => x + ", " + y));
         }
 
-        public IEnumerable<Expression> GetChildren()
+        public IEnumerable<AphidExpression> GetChildren()
         {
             return new[] { FunctionExpression }.Concat(Args);
         }
