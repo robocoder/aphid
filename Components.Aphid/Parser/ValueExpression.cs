@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Components.Aphid.Parser
 {
-    public class ValueExpression<TValue> : AphidExpression
+    public abstract class ValueExpression<TValue> : AphidExpression
     {
         public TValue Value { get; set; }
 
