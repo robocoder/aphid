@@ -987,28 +987,18 @@ namespace Components.Aphid.Interpreter
             TypeExtender.Extend(this, expression.ExtendType, obj);
         }
 
-        private void InterpretControlFlowExpression(ControlFlowExpression expression)
+        private void InterpretWhileExpression(WhileExpression expression)
         {
-            switch (expression.ControlFlowType)
+            while ((bool)((AphidObject)(InterpretExpression(expression.Condition))).Value)
             {
-                case AphidTokenType.whileKeyword:
+                EnterChildScope();
+                Interpret(expression.Body, false);
 
-                    while ((bool)((AphidObject)(InterpretExpression(expression.Condition))).Value)
-                    {
-                        EnterChildScope();
-                        Interpret(expression.Body, false);
-
-                        if (LeaveChildScope(true) || _isBreaking)
-                        {
-                            _isBreaking = false;
-                            break;
-                        }
-                    }
-
+                if (LeaveChildScope(true) || _isBreaking)
+                {
+                    _isBreaking = false;
                     break;
-
-                default:
-                    throw new InvalidOperationException();
+                }
             }
         }
 
@@ -1126,121 +1116,96 @@ namespace Components.Aphid.Interpreter
 
         private object InterpretExpression(AphidExpression expression)
         {
-            if (expression is BinaryOperatorExpression)
+            switch (expression.Type)
             {
-                return InterpretBinaryOperatorExpression((BinaryOperatorExpression)expression);
-            }
-            else if (expression is ObjectExpression)
-            {
-                return InterpretObjectExpression((ObjectExpression)expression);
-            }
-            else if (expression is StringExpression)
-            {
-                return InterpretStringExpression((StringExpression)expression);
-            }
-            else if (expression is NumberExpression)
-            {
-                return InterpretNumberExpression((NumberExpression)expression);
-            }
-            else if (expression is CallExpression)
-            {
-                return InterpretCallExpression((CallExpression)expression);
-            }
-            else if (expression is IdentifierExpression)
-            {
-                return InterpretIdentifierExpression((IdentifierExpression)expression);
-            }
-            else if (expression is FunctionExpression)
-            {
-                return InterpretFunctionExpression((FunctionExpression)expression);
-            }
-            else if (expression is ArrayExpression)
-            {
-                return InterpretArrayExpression((ArrayExpression)expression);
-            }
-            else if (expression is UnaryOperatorExpression)
-            {
-                return InterpretUnaryOperatorExpression((UnaryOperatorExpression)expression);
-            }
-            else if (expression is BooleanExpression)
-            {
-                return InterpretBooleanExpression((BooleanExpression)expression);
-            }
-            else if (expression is IfExpression)
-            {
-                return InterpretIfExpression((IfExpression)expression);
-            }
-            else if (expression is ArrayAccessExpression)
-            {
-                return InterpretArrayAccessExpression((ArrayAccessExpression)expression);
-            }
-            else if (expression is ForEachExpression)
-            {
-                return InterpretForEachExpression((ForEachExpression)expression);
-            }
-            else if (expression is ForExpression)
-            {
-                return InterpretForExpression((ForExpression)expression);
-            }
-            else if (expression is LoadScriptExpression)
-            {
-                return InterpretLoadScriptExpression((LoadScriptExpression)expression);
-            }
-            else if (expression is LoadLibraryExpression)
-            {
-                return InterpretLoadLibraryExpression((LoadLibraryExpression)expression);
-            }
-            else if (expression is NullExpression)
-            {
-                return new AphidObject(null);
-            }
-            else if (expression is BreakExpression)
-            {
-                return InterpretBreakExpression();
-            }
-            else if (expression is PartialFunctionExpression)
-            {
-                return InterpretPartialFunctionExpression((PartialFunctionExpression)expression);
-            }
-            else if (expression is ThisExpression)
-            {
-                return InterpretThisExpression();
-            }
-            else if (expression is PatternMatchingExpression)
-            {
-                return InterpretPatternMatchingExpression((PatternMatchingExpression)expression);
-            }
-            else if (expression is ExtendExpression)
-            {
-                InterpretExtendExpression((ExtendExpression)expression);
+                case AphidNodeType.BinaryOperatorExpression:
+                    return InterpretBinaryOperatorExpression((BinaryOperatorExpression)expression);
 
-                return null;
-            }
-            else if (expression is ControlFlowExpression)
-            {
-                InterpretControlFlowExpression((ControlFlowExpression)expression);
+                case AphidNodeType.ObjectExpression:
+                    return InterpretObjectExpression((ObjectExpression)expression);
 
-                return null;
-            }
-            else if (expression is TryExpression)
-            {
-                InterpretTryExpression((TryExpression)expression);
+                case AphidNodeType.StringExpression:
+                    return InterpretStringExpression((StringExpression)expression);
 
-                return null;
-            }
-            else if (expression is TernaryOperatorExpression)
-            {
-                return InterpretTernaryOperatorExpression((TernaryOperatorExpression)expression);
-            }
-            else if (expression is SwitchExpression)
-            {
-                InterpretSwitchExpression((SwitchExpression)expression);
+                case AphidNodeType.NumberExpression:
+                    return InterpretNumberExpression((NumberExpression)expression);
 
-                return null;
-            }
-            else
-            {
-                throw new AphidRuntimeException("Unexpected expression {0}", expression);
+                case AphidNodeType.CallExpression:
+                    return InterpretCallExpression((CallExpression)expression);
+
+                case AphidNodeType.IdentifierExpression:
+                    return InterpretIdentifierExpression((IdentifierExpression)expression);
+
+                case AphidNodeType.FunctionExpression:
+                    return InterpretFunctionExpression((FunctionExpression)expression);
+
+                case AphidNodeType.ArrayExpression:
+                    return InterpretArrayExpression((ArrayExpression)expression);
+
+                case AphidNodeType.UnaryOperatorExpression:
+                    return InterpretUnaryOperatorExpression((UnaryOperatorExpression)expression);
+
+                case AphidNodeType.BooleanExpression:
+                    return InterpretBooleanExpression((BooleanExpression)expression);
+
+                case AphidNodeType.IfExpression:
+                    return InterpretIfExpression((IfExpression)expression);
+
+                case AphidNodeType.ArrayAccessExpression:
+                    return InterpretArrayAccessExpression((ArrayAccessExpression)expression);
+
+                case AphidNodeType.ForEachExpression:
+                    return InterpretForEachExpression((ForEachExpression)expression);
+
+                case AphidNodeType.ForExpression:
+                    return InterpretForExpression((ForExpression)expression);
+
+                case AphidNodeType.LoadScriptExpression:
+                    return InterpretLoadScriptExpression((LoadScriptExpression)expression);
+
+                case AphidNodeType.LoadLibraryExpression:
+                    return InterpretLoadLibraryExpression((LoadLibraryExpression)expression);
+
+                case AphidNodeType.NullExpression:
+                    return new AphidObject(null);
+
+                case AphidNodeType.BreakExpression:
+                    return InterpretBreakExpression();
+
+                case AphidNodeType.PartialFunctionExpression:
+                    return InterpretPartialFunctionExpression((PartialFunctionExpression)expression);
+
+                case AphidNodeType.ThisExpression:
+                    return InterpretThisExpression();
+
+                case AphidNodeType.PatternMatchingExpression:
+                    return InterpretPatternMatchingExpression((PatternMatchingExpression)expression);
+
+                case AphidNodeType.ExtendExpression:
+                    InterpretExtendExpression((ExtendExpression)expression);
+
+                    return null;
+
+                case AphidNodeType.WhileExpression:
+                    InterpretWhileExpression((WhileExpression)expression);
+
+                    return null;
+
+                case AphidNodeType.TryExpression:
+                    InterpretTryExpression((TryExpression)expression);
+
+                    return null;
+
+                case AphidNodeType.TernaryOperatorExpression:
+                    return InterpretTernaryOperatorExpression((TernaryOperatorExpression)expression);
+
+                case AphidNodeType.SwitchExpression:
+                    InterpretSwitchExpression((SwitchExpression)expression);
+
+                    return null;
+
+                default:
+                    throw new AphidRuntimeException("Unexpected expression {0}", expression);
             }
         }
 
