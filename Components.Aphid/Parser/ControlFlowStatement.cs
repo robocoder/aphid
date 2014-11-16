@@ -9,7 +9,12 @@ namespace Components.Aphid.Parser
 {
     public class ControlFlowExpression : AphidExpression, IParentNode
     {
-        public AphidTokenType Type { get; set; }
+        public override AphidNodeType Type
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public new AphidTokenType ControlFlowType { get; set; }
 
         public AphidExpression Condition { get; set; }
 
@@ -17,7 +22,7 @@ namespace Components.Aphid.Parser
 
         public ControlFlowExpression(AphidTokenType type, AphidExpression condition, List<AphidExpression> body)
         {
-            Type = type;
+            ControlFlowType = type;
             Condition = condition;
             Body = body;
         }

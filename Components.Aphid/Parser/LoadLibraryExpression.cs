@@ -7,6 +7,11 @@ namespace Components.Aphid.Parser
 {
     public class LoadLibraryExpression : AphidExpression, IParentNode
     {
+        public override AphidNodeType Type
+        {
+            get { return AphidNodeType.LoadLibraryExpression; }
+        }
+
         public AphidExpression LibraryExpression { get; set; }
 
         public LoadLibraryExpression(AphidExpression libraryExpression)

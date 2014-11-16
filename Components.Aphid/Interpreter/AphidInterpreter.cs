@@ -984,12 +984,12 @@ namespace Components.Aphid.Interpreter
         private void InterpretExtendExpression(ExtendExpression expression)
         {
             var obj = InterpretObjectExpression(expression.Object);
-            TypeExtender.Extend(this, expression.Type, obj);
+            TypeExtender.Extend(this, expression.ExtendType, obj);
         }
 
         private void InterpretControlFlowExpression(ControlFlowExpression expression)
         {
-            switch (expression.Type)
+            switch (expression.ControlFlowType)
             {
                 case AphidTokenType.whileKeyword:
 

@@ -7,6 +7,11 @@ namespace Components.Aphid.Parser
 {
     public class ForExpression : AphidExpression, IParentNode
     {
+        public override AphidNodeType Type
+        {
+            get { return AphidNodeType.ForExpression; }
+        }
+
         public AphidExpression Initialization { get; set; }
 
         public AphidExpression Condition { get; set; }

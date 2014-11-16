@@ -7,6 +7,11 @@ namespace Components.Aphid.Parser
 {
     public class TryExpression : AphidExpression, IParentNode
     {
+        public override AphidNodeType Type
+        {
+            get { return AphidNodeType.TryExpression; }
+        }
+
         public List<AphidExpression> TryBody { get; set; }
 
         public List<AphidExpression> CatchBody { get; set; }

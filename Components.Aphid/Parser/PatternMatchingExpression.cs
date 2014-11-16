@@ -7,6 +7,11 @@ namespace Components.Aphid.Parser
 {
     public class PatternMatchingExpression : AphidExpression, IParentNode
     {
+        public override AphidNodeType Type
+        {
+            get { return AphidNodeType.PatternMatchingExpression; }
+        }
+
         public AphidExpression TestExpression { get; set; }
 
         public List<Tuple<AphidExpression, AphidExpression>> Patterns { get; set; }

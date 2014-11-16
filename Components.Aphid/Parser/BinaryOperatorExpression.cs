@@ -7,6 +7,11 @@ namespace Components.Aphid.Parser
 {
     public class BinaryOperatorExpression : AphidExpression, IParentNode
     {
+        public override AphidNodeType Type
+        {
+            get { return AphidNodeType.BinaryOperatorExpression; }
+        }
+
         private Dictionary<AphidTokenType, string> _opTable = new Dictionary<AphidTokenType, string>
         {
             { AphidTokenType.AdditionOperator, "+" },

@@ -110,7 +110,7 @@ namespace Components.Aphid.Parser
                 var cfExp = (ControlFlowExpression)expression;
 
                 expanded.Add(new ControlFlowExpression(
-                    cfExp.Type,
+                    cfExp.ControlFlowType,
                     Mutate(cfExp.Condition).Single(),
                     Mutate(cfExp.Body)));
             }
@@ -167,7 +167,7 @@ namespace Components.Aphid.Parser
                 var extendExp = (ExtendExpression)expression;
 
                 expanded.Add(new ExtendExpression(
-                    extendExp.Type,
+                    extendExp.ExtendType,
                     (ObjectExpression)Mutate(extendExp.Object).Single()));
             }
             else if (expression is TernaryOperatorExpression)

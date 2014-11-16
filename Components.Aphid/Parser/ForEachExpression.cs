@@ -6,6 +6,11 @@ namespace Components.Aphid.Parser
 {
     public class ForEachExpression : AphidExpression, IParentNode
     {
+        public override AphidNodeType Type
+        {
+            get { return AphidNodeType.ForEachExpression; }
+        }
+
         public AphidExpression Collection { get; set; }
 
         public AphidExpression Element { get; set; }

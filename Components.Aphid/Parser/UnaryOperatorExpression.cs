@@ -9,6 +9,11 @@ namespace Components.Aphid.Parser
 {
     public class UnaryOperatorExpression : AphidExpression, IParentNode
     {
+        public override AphidNodeType Type
+        {
+            get { return AphidNodeType.UnaryOperatorExpression; }
+        }
+
         public AphidTokenType Operator { get; set; }
 
         public AphidExpression Operand { get; set; }

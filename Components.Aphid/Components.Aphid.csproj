@@ -82,6 +82,7 @@
     <Compile Include="Parser\AphidMacroBodyMutator.cs" />
     <Compile Include="Parser\AphidMacroMutator.cs" />
     <Compile Include="Parser\AphidMutator.cs" />
+    <Compile Include="Parser\AphidNodeType.cs" />
     <Compile Include="Parser\ArrayExpression.cs" />
     <Compile Include="Parser\BinaryNumber.cs" />
     <Compile Include="Parser\BinaryOperatorExpression.cs" />
@@ -96,7 +97,7 @@
     <Compile Include="Parser\IncludeMutator.cs" />
     <Compile Include="Parser\IParentNode.cs" />
     <Compile Include="Parser\LoadLibraryExpression.cs" />
-    <Compile Include="Parser\Expression.cs" />
+    <Compile Include="Parser\AphidExpression.cs" />
     <Compile Include="Parser\FunctionExpression.cs" />
     <Compile Include="Parser\IdentifierExpression.cs" />
     <Compile Include="Interpreter\AphidInteropFunction.cs" />

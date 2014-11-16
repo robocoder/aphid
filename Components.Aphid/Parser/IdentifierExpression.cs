@@ -7,6 +7,11 @@ namespace Components.Aphid.Parser
 {
     public class IdentifierExpression : AphidExpression
     {
+        public override AphidNodeType Type
+        {
+            get { return AphidNodeType.IdentifierExpression; }
+        }
+
         public string Identifier { get; set; }
 
         public IdentifierExpression(string identifier)

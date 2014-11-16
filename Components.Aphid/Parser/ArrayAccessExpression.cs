@@ -5,6 +5,11 @@ namespace Components.Aphid.Parser
 {
     public class ArrayAccessExpression : AphidExpression, IParentNode
     {
+        public override AphidNodeType Type
+        {
+            get { return AphidNodeType.ArrayAccessExpression; }
+        }
+
         public AphidExpression ArrayExpression { get; set; }
 
         public AphidExpression KeyExpression { get; set; }
@@ -22,7 +27,7 @@ namespace Components.Aphid.Parser
         public IEnumerable<AphidExpression> GetChildren()
         {
             return new[] { ArrayExpression, KeyExpression };
-        }
+        }        
     }
 }
 

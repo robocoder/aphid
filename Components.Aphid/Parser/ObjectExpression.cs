@@ -8,6 +8,11 @@ namespace Components.Aphid.Parser
 {
     public class ObjectExpression : AphidExpression, IParentNode
     {
+        public override AphidNodeType Type
+        {
+            get { return AphidNodeType.ObjectExpression; }
+        }
+
         public List<BinaryOperatorExpression> Pairs { get; set; }
 
         public ObjectExpression()

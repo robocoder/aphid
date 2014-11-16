@@ -177,12 +177,14 @@ Components.Aphid/Library/Threading.alx -text
 Components.Aphid/Library/ThreadingLibrary.cs -text
 Components.Aphid/Library/Udp.alx -text
 Components.Aphid/Library/UdpLibrary.cs -text
+Components.Aphid/Parser/AphidExpression.cs -text
 Components.Aphid/Parser/AphidMacro.cs -text
 Components.Aphid/Parser/AphidMacroBodyMutator.cs -text
 Components.Aphid/Parser/AphidMacroMutator.cs -text
 Components.Aphid/Parser/AphidMutator.cs -text
 Components.Aphid/Parser/AphidNode.cs -text
 Components.Aphid/Parser/AphidNodeCollection.cs -text
+Components.Aphid/Parser/AphidNodeType.cs -text
 Components.Aphid/Parser/AphidParser.cs -text
 Components.Aphid/Parser/AphidParser.g.cs -text
 Components.Aphid/Parser/AphidParserException.cs -text
@@ -197,7 +199,6 @@ Components.Aphid/Parser/ConstantFoldingMutator.cs -text
 Components.Aphid/Parser/ControlFlowStatement.cs -text
 Components.Aphid/Parser/DynamicMemberExpression.cs -text
 Components.Aphid/Parser/ElseExpression.cs -text
-Components.Aphid/Parser/Expression.cs -text
 Components.Aphid/Parser/ExtendExpression.cs -text
 Components.Aphid/Parser/ForEachExpression.cs -text
 Components.Aphid/Parser/ForExpression.cs -text

@@ -7,5 +7,9 @@ namespace Components.Aphid.Parser
 {
     public class NullExpression : AphidExpression
     {
+        public override AphidNodeType Type
+        {
+            get { return AphidNodeType.NullExpression; }
+        }
     }
 }

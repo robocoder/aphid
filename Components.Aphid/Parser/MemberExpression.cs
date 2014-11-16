@@ -8,7 +8,13 @@ namespace Components.Aphid.Parser
 {
     public class MemberExpression : AphidExpression, IParentNode
     {
-        public IdentifierExpression Variable { get; set; } 
+        public override AphidNodeType Type
+        {
+            get { return AphidNodeType.MemberExpression; }
+        }
+
+        public IdentifierExpression Variable { get; set; }
+
         public List<IdentifierExpression> Members { get; set; }
 
         public IEnumerable<AphidExpression> GetChildren()
