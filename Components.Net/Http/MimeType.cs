@@ -8,10 +8,10 @@ namespace Components.Net.Http
 {
     public static class MimeType
     {
-        public const string ApplicationOctetStream = "application/octet-stream";
-        public const string Multipart = "multipart/form-data";
-        public const string FormUrlEncoded = "application/x-www-form-urlencoded";
-        public const string TextPlain = "text/plain";
-        public const string TextHtml = "text/html";
+        public const string ApplicationOctetStream = "application/octet-stream",
+            Multipart = "multipart/form-data",
+            FormUrlEncoded = "application/x-www-form-urlencoded",
+            TextPlain = "text/plain",
+            TextHtml = "text/html";
     }
 }

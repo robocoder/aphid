@@ -8,14 +8,14 @@ namespace Components.Net.Http
 {
     public static class HttpMethod
     {
-        public const string Get = "GET";
-        public const string Head = "HEAD";
-        public const string Post = "POST";
-        public const string PUT = "PUT";
-        public const string Delete = "DELETE";
-        public const string Trace = "TRACE";
-        public const string Options = "OPTIONS";
-        public const string Connect = "CONNECT";
-        public const string Patch = "PATCH";
+        public const string Get = "GET",
+            Head = "HEAD",
+            Post = "POST",
+            PUT = "PUT",
+            Delete = "DELETE",
+            Trace = "TRACE",
+            Options = "OPTIONS",
+            Connect = "CONNECT",
+            Patch = "PATCH";
     }
 }
