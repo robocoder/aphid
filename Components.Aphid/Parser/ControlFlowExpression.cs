@@ -7,14 +7,9 @@ using System.Threading.Tasks;
 
 namespace Components.Aphid.Parser
 {
-    public class ControlFlowExpression : AphidExpression, IParentNode
+    public abstract class ControlFlowExpression : AphidExpression, IParentNode
     {
-        public override AphidNodeType Type
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public new AphidTokenType ControlFlowType { get; set; }
+        public AphidTokenType ControlFlowType { get; set; }
 
         public AphidExpression Condition { get; set; }
 

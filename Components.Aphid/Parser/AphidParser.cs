@@ -693,14 +693,11 @@ namespace Components.Aphid.Parser
             }
         }
 
-        public ControlFlowExpression ParseWhileExpression()
+        public WhileExpression ParseWhileExpression()
         {
             NextToken();
 
-            return new ControlFlowExpression(
-                AphidTokenType.whileKeyword,
-                ParseCondition(),
-                ParseBlock());
+            return new WhileExpression(ParseCondition(), ParseBlock());
         }
 
         private List<AphidExpression> ParseTuple()

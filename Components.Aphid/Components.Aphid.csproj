@@ -123,6 +123,7 @@
     <Compile Include="Parser\ThisExpression.cs" />
     <Compile Include="Parser\TryExpression.cs" />
     <Compile Include="Parser\UnaryOperatorExpression.cs" />
+    <Compile Include="Parser\WhileExpression.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Parser\Statement.cs" />
     <Compile Include="Parser\StringExpression.cs" />

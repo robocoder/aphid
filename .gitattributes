@@ -226,6 +226,7 @@ Components.Aphid/Parser/ThisExpression.cs -text
 Components.Aphid/Parser/TryExpression.cs -text
 Components.Aphid/Parser/UnaryOperatorExpression.cs -text
 Components.Aphid/Parser/ValueExpression.cs -text
+Components.Aphid/Parser/WhileExpression.cs -text
 Components.Aphid/Properties/AssemblyInfo.cs -text
 Components.Net/Components.Net.csproj -text
 Components.Net/Components.Net.csproj.vspscc -text

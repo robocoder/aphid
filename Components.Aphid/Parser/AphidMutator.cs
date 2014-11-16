@@ -105,14 +105,11 @@ namespace Components.Aphid.Parser
                         Mutate(forEachExp.Element).Single(),
                         Mutate(forEachExp.Body)));
             }
-            else if (expression is ControlFlowExpression)
+            else if (expression.Type == AphidNodeType.WhileExpression)
             {
-                var cfExp = (ControlFlowExpression)expression;
+                var cfExp = (WhileExpression)expression;
 
-                expanded.Add(new ControlFlowExpression(
-                    cfExp.ControlFlowType,
-                    Mutate(cfExp.Condition).Single(),
-                    Mutate(cfExp.Body)));
+                expanded.Add(new WhileExpression(Mutate(cfExp.Condition).Single(), Mutate(cfExp.Body)));
             }
             else if (expression is LoadScriptExpression)
             {
