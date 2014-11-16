@@ -8,7 +8,7 @@ namespace Components.Net.Http
 {
     public static class HttpConnection
     {
-        public const string KeepAlive = "Keep-Alive";
-        public const string Close = "close";
+        public const string KeepAlive = "Keep-Alive",
+            Close = "close";
     }
 }
