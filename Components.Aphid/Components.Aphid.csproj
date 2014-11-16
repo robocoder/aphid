@@ -90,7 +90,7 @@
     <Compile Include="Parser\BreakExpression.cs" />
     <Compile Include="Parser\CallExpression.cs" />
     <Compile Include="Parser\ConstantFoldingMutator.cs" />
-    <Compile Include="Parser\ControlFlowStatement.cs" />
+    <Compile Include="Parser\ControlFlowExpression.cs" />
     <Compile Include="Parser\AphidParser.g.cs" />
     <Compile Include="Parser\ExtendExpression.cs" />
     <Compile Include="Parser\ForExpression.cs" />
