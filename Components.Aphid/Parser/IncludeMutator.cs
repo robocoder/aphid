@@ -33,14 +33,16 @@ namespace Components.Aphid.Parser
 
             if (scriptExp == null)
             {
-                throw new InvalidOperationException();
+                throw new AphidRuntimeException(
+                    "Invalid load script operand '{0}'.",
+                    loadExp.FileExpression);
             }
 
             var script = _loader.FindScriptFile(StringParser.Parse(scriptExp.Value));
 
             if (!File.Exists(script))
             {
-                throw new InvalidOperationException();
+                throw new AphidRuntimeException("Could not find script '{0}'.", scriptExp.Value);
             }
 
             return AphidParser.Parse(File.ReadAllText(script));
