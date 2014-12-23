@@ -134,6 +134,8 @@ namespace Components.Aphid.Parser
         {
             switch (_currentToken.TokenType)
             {
+                case AphidTokenType.AdditionOperator:
+                case AphidTokenType.MinusOperator:
                 case AphidTokenType.NotOperator:
                 case AphidTokenType.IncrementOperator:
                 case AphidTokenType.DecrementOperator:
@@ -276,13 +278,6 @@ namespace Components.Aphid.Parser
 
                 case AphidTokenType.Number:
                     exp = ParseNumberExpression();
-                    break;
-
-                case AphidTokenType.MinusOperator:
-                    NextToken();
-                    var numExp = ParseNumberExpression();
-                    numExp.Value *= -1;
-                    exp = numExp;
                     break;
 
                 case AphidTokenType.Identifier:

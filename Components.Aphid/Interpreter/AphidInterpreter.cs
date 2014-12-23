@@ -722,6 +722,21 @@ namespace Components.Aphid.Interpreter
             {
                 switch (expression.Operator)
                 {
+                    case AphidTokenType.AdditionOperator:
+                        return (AphidObject)InterpretExpression(expression.Operand);
+
+                    case AphidTokenType.MinusOperator:
+                        var val = ValueHelper.Unwrap(InterpretExpression(expression.Operand));
+
+                        if (!(val is decimal))
+                        {
+                            throw new AphidRuntimeException(
+                                "Unary operator '-' expects number, {0} was provided instead.",
+                                val.GetType());
+                        }
+
+                        return ValueHelper.Wrap((decimal)val * -1);
+
                     case AphidTokenType.retKeyword:
                         SetReturnValue(ValueHelper.Wrap(InterpretExpression(expression.Operand)));
                         _isReturning = true;
