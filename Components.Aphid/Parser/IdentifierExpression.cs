@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Components.Aphid.Parser
 {
-    public class IdentifierExpression : AphidExpression
+    public class IdentifierExpression : AphidExpression, IParentNode
     {
         public override AphidNodeType Type
         {
@@ -31,6 +31,11 @@ namespace Components.Aphid.Parser
         public override string ToString()
         {
             return Identifier;
+        }
+
+        public IEnumerable<AphidExpression> GetChildren()
+        {
+            return Attributes;
         }
     }
 }
