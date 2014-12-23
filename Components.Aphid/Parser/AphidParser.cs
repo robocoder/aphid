@@ -293,6 +293,20 @@ namespace Components.Aphid.Parser
                         NextToken();
                         exp = new UnaryOperatorExpression(AphidTokenType.definedKeyword, exp) { IsPostfix = true };
                     }
+                    else if (_currentToken.TokenType == AphidTokenType.Identifier)
+                    {
+                        var id = (IdentifierExpression)exp;
+                        var attributes = new List<IdentifierExpression>();
+
+                        while (_currentToken.TokenType == AphidTokenType.Identifier)
+                        {
+                            attributes.Add(id);
+                            id = ParseIdentifierExpression();
+                        }
+
+                        id.Attributes = attributes;
+                        exp = id;
+                    }
 
                     break;
 
