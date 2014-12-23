@@ -48,7 +48,17 @@ namespace Components.Aphid.Parser
 
             var expanded = new List<AphidExpression>();
 
-            if (expression is CallExpression)
+            if (expression is IdentifierExpression)
+            {
+                var id = (IdentifierExpression)expression;
+
+                expanded.Add(new IdentifierExpression(
+                    id.Identifier,
+                    id.Attributes
+                        .Select(x => (IdentifierExpression)Mutate(x).Single())
+                        .ToList()));
+            }
+            else if (expression is CallExpression)
             {
                 var call = (CallExpression)expression;
 
