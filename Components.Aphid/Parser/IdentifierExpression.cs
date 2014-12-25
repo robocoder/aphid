@@ -37,5 +37,10 @@ namespace Components.Aphid.Parser
         {
             return Attributes;
         }
+
+        public bool HasAttribute(string attribute)
+        {
+            return Attributes.Any(x => x.Identifier == attribute);
+        }
     }
 }
