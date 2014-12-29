@@ -420,7 +420,6 @@ namespace Components.Aphid.Parser
         private AphidExpression ParseFunctionExpression()
         {
             AphidExpression exp;
-
             NextToken();
 
             switch (_currentToken.TokenType)
@@ -439,7 +438,17 @@ namespace Components.Aphid.Parser
                         {
                             if (_currentToken.TokenType == AphidTokenType.Identifier)
                             {
-                                funcExp.Args.Add(ParseIdentifierExpression() as IdentifierExpression);
+                                var id = (IdentifierExpression)ParseIdentifierExpression();
+                                AphidExpression argExp = id;
+
+                                if (_currentToken.TokenType == AphidTokenType.AssignmentOperator)
+                                {
+                                    var op = _currentToken.TokenType;
+                                    NextToken();
+                                    argExp = new BinaryOperatorExpression(id, op, ParseExpression());
+                                }
+
+                                funcExp.Args.Add(argExp);
 
                                 if (_currentToken.TokenType == AphidTokenType.Comma)
                                 {
