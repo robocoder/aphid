@@ -139,7 +139,7 @@ namespace Components.Aphid.Parser
 
                 expanded.Add(new FunctionExpression()
                 {
-                    Args = funcExp.Args.Select(x => (IdentifierExpression)Mutate(x).Single()).ToList(),
+                    Args = funcExp.Args.Select(x => Mutate(x).Single()).ToList(),
                     Body = funcExp.Body.SelectMany(x => Mutate(x)).ToList()
                 });
             }

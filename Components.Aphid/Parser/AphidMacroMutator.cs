@@ -48,7 +48,7 @@ namespace Components.Aphid.Parser
             var argTable = callExp.Args
                 .Select((x, i) => new
                 {
-                    Name = macro.Declaration.Args[i],
+                    Name = (IdentifierExpression)macro.Declaration.Args[i],
                     Value = x,
                 })
                 .ToDictionary(x => x.Name.Identifier, x => x.Value);

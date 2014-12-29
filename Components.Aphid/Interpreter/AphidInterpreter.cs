@@ -701,7 +701,10 @@ namespace Components.Aphid.Interpreter
         {
             return new AphidObject(new AphidFunction()
             {
-                Args = expression.Args.Select(x => x.Identifier).ToArray(),
+                Args = expression.Args
+                    .Select(x => ((IdentifierExpression)x).Identifier)
+                    .ToArray(),
+
                 Body = expression.Body,
                 ParentScope = _currentScope,
             });

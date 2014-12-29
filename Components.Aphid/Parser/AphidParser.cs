@@ -428,7 +428,7 @@ namespace Components.Aphid.Parser
                 case AphidTokenType.LeftParenthesis:
                     var funcExp = new FunctionExpression()
                     {
-                        Args = new List<IdentifierExpression>()
+                        Args = new List<AphidExpression>()
                     };
 
                     NextToken();
