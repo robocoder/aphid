@@ -15,8 +15,11 @@ namespace Components.Aphid.Parser
 
         private AphidToken _currentToken;
 
+        public bool UseImplicitReturns { get; set; }
+
         public AphidParser(List<AphidToken> tokens)
         {
+            UseImplicitReturns = true;
             _tokens = tokens;
         }
 
@@ -33,7 +36,7 @@ namespace Components.Aphid.Parser
                 throw new AphidParserException(_currentToken, tokenType);
             }
         }
-        
+
         [System.Diagnostics.DebuggerStepThrough]
         public bool NextToken()
         {
@@ -66,7 +69,7 @@ namespace Components.Aphid.Parser
                 switch (_currentToken.TokenType)
                 {
                     case AphidTokenType.AggregateOperator:
-                    case AphidTokenType.AnyOperator:                    
+                    case AphidTokenType.AnyOperator:
                     case AphidTokenType.SelectManyOperator:
                     case AphidTokenType.SelectOperator:
                     case AphidTokenType.WhereOperator:
@@ -78,13 +81,13 @@ namespace Components.Aphid.Parser
                     case AphidTokenType.DistinctOperator:
                         exp = new UnaryOperatorExpression(_currentToken.TokenType, exp);
                         NextToken();
-                        break;   
-                 
+                        break;
+
                     default:
                         inQuery = false;
                         break;
                 }
-            } 
+            }
             while (inQuery);
 
             return exp;
@@ -473,9 +476,12 @@ namespace Components.Aphid.Parser
 
                     var body = ParseBlock(false);
 
-                    if (isSingleLine)
+                    if (isSingleLine && UseImplicitReturns)
                     {
-                        funcExp.Body = new List<AphidExpression> { new UnaryOperatorExpression(AphidTokenType.retKeyword, body[0]) };
+                        funcExp.Body = new List<AphidExpression> 
+                        { 
+                            new UnaryOperatorExpression(AphidTokenType.retKeyword, body[0]) 
+                        };
                     }
                     else
                     {
