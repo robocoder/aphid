@@ -140,6 +140,7 @@ namespace Components.Aphid.Parser
                 case AphidTokenType.IncrementOperator:
                 case AphidTokenType.DecrementOperator:
                 case AphidTokenType.MultiplicationOperator:
+                case AphidTokenType.ComplementOperator:
                     var t = _currentToken.TokenType;
                     NextToken();
                     return new UnaryOperatorExpression(t, ParseArrayAccessExpression());
