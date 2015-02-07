@@ -197,6 +197,15 @@ namespace Components.Aphid.Parser
 
                     break;
 
+                case AphidNodeType.DynamicMemberExpression:
+                    var dynExp = (DynamicMemberExpression)expression;
+
+                    expanded.Add(
+                        new DynamicMemberExpression(
+                            Mutate(dynExp.MemberExpression).Single()));
+
+                    break;
+
                 default:
                     if (expression is IParentNode)
                     {
