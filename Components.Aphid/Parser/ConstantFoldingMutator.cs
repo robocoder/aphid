@@ -43,16 +43,11 @@ namespace Components.Aphid.Parser
                 var left = GetString(binOp.LeftOperand);
                 var right = GetString(binOp.RightOperand);
 
-                if (left[0] != right[0])
-                {
-                    hasChanged = false;
-
-                    return null;
-                }
-
                 return new List<AphidExpression> 
                 { 
-                    new StringExpression(left.Remove(left.Length - 1) + right.Substring(1))
+                    new StringExpression(
+                        "'" + left.Substring(1, left.Length - 2) + 
+                        right.Substring(1, right.Length - 2) + "'")
                 };
             }
             else if (OperandsAre<NumberExpression>(binOp))
