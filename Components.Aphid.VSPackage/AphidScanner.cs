@@ -11,11 +11,11 @@ namespace Components.Aphid.VSPackage
     public class AphidScanner : IScanner
     {
         private int _index;
-        private List<AphidToken> _tokens;
+        private AphidToken[] _tokens;
 
         public bool ScanTokenAndProvideInfoAboutIt(TokenInfo tokenInfo, ref int state)
         {
-            if (_tokens.Count <= _index)
+            if (_tokens.Length <= _index)
             {
                 return false;
             }
@@ -42,8 +42,17 @@ namespace Components.Aphid.VSPackage
                     break;
 
                 case AphidTokenType.Identifier:
-                    tokenInfo.Type = TokenType.Identifier;
-                    tokenInfo.Color = TokenColor.Identifier;
+                    if (_tokens.Length != _index &&
+                        _tokens[_index].TokenType == AphidTokenType.Identifier)
+                    {
+                        tokenInfo.Type = TokenType.Keyword;
+                        tokenInfo.Color = TokenColor.Keyword;
+                    }
+                    else
+                    {
+                        tokenInfo.Type = TokenType.Identifier;
+                        tokenInfo.Color = TokenColor.Identifier;
+                    }
                     break;
 
                 case AphidTokenType.breakKeyword:
@@ -159,11 +168,14 @@ namespace Components.Aphid.VSPackage
             _index = 0;
             try
             {
-                _tokens = new AphidLexer(source).GetAllTokens();
+                _tokens = new AphidLexer(source)
+                    .GetAllTokens()
+                    .Where(x => x.TokenType != AphidTokenType.WhiteSpace)
+                    .ToArray();
             }
             catch
             {
-                _tokens = new List<AphidToken>();
+                _tokens = new AphidToken[0];
             }
         }
     }
