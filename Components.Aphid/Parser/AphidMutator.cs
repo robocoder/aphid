@@ -190,7 +190,7 @@ namespace Components.Aphid.Parser
             }
             else if (expression is IParentNode)
             {
-                throw new InvalidOperationException();
+                throw new NotImplementedException();
             }
             else
             {
