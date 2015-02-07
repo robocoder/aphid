@@ -96,6 +96,7 @@ Components.Aphid.Tests.Integration/LexerTests.cs -text
 Components.Aphid.Tests.Integration/ListTests.cs -text
 Components.Aphid.Tests.Integration/LiteralTests.cs -text
 Components.Aphid.Tests.Integration/LoopTests.cs -text
+Components.Aphid.Tests.Integration/MutatorTests.cs -text
 Components.Aphid.Tests.Integration/NullTests.cs -text
 Components.Aphid.Tests.Integration/OperatorTests.cs -text
 Components.Aphid.Tests.Integration/OrderOfOperationsTests.cs -text
