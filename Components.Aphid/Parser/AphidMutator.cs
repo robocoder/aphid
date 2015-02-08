@@ -226,11 +226,20 @@ namespace Components.Aphid.Parser
         {
             List<AphidExpression> ast = expression;
 
+            var anyMutations = false;
+
             do
             {
                 Reset();
                 ast = Mutate(ast);
+
+                if (HasMutated)
+                {
+                    anyMutations = true;
+                }
             } while (HasMutated);
+
+            HasMutated = anyMutations;
 
             return ast;
         }
