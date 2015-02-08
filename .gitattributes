@@ -183,6 +183,7 @@ Components.Aphid/Parser/AphidMacro.cs -text
 Components.Aphid/Parser/AphidMacroBodyMutator.cs -text
 Components.Aphid/Parser/AphidMacroMutator.cs -text
 Components.Aphid/Parser/AphidMutator.cs -text
+Components.Aphid/Parser/AphidMutatorGroup.cs -text
 Components.Aphid/Parser/AphidNode.cs -text
 Components.Aphid/Parser/AphidNodeCollection.cs -text
 Components.Aphid/Parser/AphidNodeType.cs -text

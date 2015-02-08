@@ -82,6 +82,7 @@
     <Compile Include="Parser\AphidMacroBodyMutator.cs" />
     <Compile Include="Parser\AphidMacroMutator.cs" />
     <Compile Include="Parser\AphidMutator.cs" />
+    <Compile Include="Parser\AphidMutatorGroup.cs" />
     <Compile Include="Parser\AphidNodeType.cs" />
     <Compile Include="Parser\ArrayExpression.cs" />
     <Compile Include="Parser\BinaryNumber.cs" />
