@@ -11,6 +11,12 @@ namespace Components.Aphid.Tests.Integration
     public class AphidObjectTests : AphidTests
     {
         [Test]
+        public void MemberGetTest()
+        {
+            AssertFoo("x = { y: 'foo' }; ret x.y;");
+        }
+
+        [Test]
         public void MemberShortHandTest()
         {
             AssertFoo("y = 'foo'; x = { y }; ret x.y;");
