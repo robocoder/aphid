@@ -17,6 +17,12 @@ namespace Components.Aphid.Tests.Integration
         }
 
         [Test]
+        public void MemberGetTest2()
+        {
+            AssertFoo("x = { y = 'foo' }; ret x.y;");
+        }
+
+        [Test]
         public void MemberShortHandTest()
         {
             AssertFoo("y = 'foo'; x = { y }; ret x.y;");
