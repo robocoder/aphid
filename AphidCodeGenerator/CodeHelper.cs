@@ -59,6 +59,23 @@ namespace AphidCodeGenerator
             return PropRef(This(), propertyNames);
         }
 
+        public static CodeFieldReferenceExpression FieldRef(CodeExpression targetObject, params string[] propertyNames)
+        {
+            CodeFieldReferenceExpression exp = null;
+
+            foreach (var p in propertyNames)
+            {
+                exp = new CodeFieldReferenceExpression(exp ?? targetObject, p);
+            }
+
+            return exp;
+        }
+
+        public static CodeFieldReferenceExpression FieldRef(params string[] propertyNames)
+        {
+            return FieldRef(This(), propertyNames);
+        }
+
         public static CodeBinaryOperatorExpression BinOpExp(CodeExpression left, CodeBinaryOperatorType op, CodeExpression right)
         {
             return new CodeBinaryOperatorExpression(left, op, right);
