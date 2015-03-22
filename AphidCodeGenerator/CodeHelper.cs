@@ -191,5 +191,10 @@ namespace AphidCodeGenerator
                 new CodeSnippetStatement(""),
                 statements);
         }
+
+        public static CodeExpressionStatement Stmt(CodeExpression expression)
+        {
+            return new CodeExpressionStatement(expression);
+        }
     }
 }
