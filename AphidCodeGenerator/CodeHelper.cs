@@ -138,6 +138,11 @@ namespace AphidCodeGenerator
             return new CodeMethodReturnStatement(expression);
         }
 
+        public static CodeMethodReturnStatement Return(string variableName)
+        {
+            return Return(CodeHelper.VarRef(variableName));
+        }
+
         public static CodePrimitiveExpression True()
         {
             return new CodePrimitiveExpression(true);
