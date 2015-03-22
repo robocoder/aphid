@@ -42,14 +42,21 @@ namespace AphidCodeGenerator
             return new CodeVariableDeclarationStatement("var", name, init);
         }
 
-        public static CodePropertyReferenceExpression PropRef(CodeExpression targetObject, string propertyName)
+        public static CodePropertyReferenceExpression PropRef(CodeExpression targetObject, params string[] propertyNames)
         {
-            return new CodePropertyReferenceExpression(targetObject, propertyName);
+            CodePropertyReferenceExpression exp = null;
+
+            foreach (var p in propertyNames)
+            {
+                exp = new CodePropertyReferenceExpression(exp ?? targetObject, p);
+            }
+
+            return exp;
         }
 
-        public static CodePropertyReferenceExpression PropRef(string propertyName)
+        public static CodePropertyReferenceExpression PropRef(params string[] propertyNames)
         {
-            return PropRef(This(), propertyName);
+            return PropRef(This(), propertyNames);
         }
 
         public static CodeBinaryOperatorExpression BinOpExp(CodeExpression left, CodeBinaryOperatorType op, CodeExpression right)
