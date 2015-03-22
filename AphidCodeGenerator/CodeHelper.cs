@@ -146,6 +146,11 @@ namespace AphidCodeGenerator
             return new CodeAssignStatement(left, right);
         }
 
+        public static CodeAssignStatement Assign(string variableName, CodeExpression right)
+        {
+            return Assign(VarRef(variableName), right);
+        }
+
         public static CodeIterationStatement While(CodeExpression testExpression)
         {
             return new CodeIterationStatement(
