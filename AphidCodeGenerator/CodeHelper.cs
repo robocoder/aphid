@@ -183,12 +183,13 @@ namespace AphidCodeGenerator
             return Invoke(This(), methodName, parameters);
         }
 
-        public static CodeIterationStatement While(CodeExpression testExpression)
+        public static CodeIterationStatement While(CodeExpression testExpression, params CodeStatement[] statements)
         {
             return new CodeIterationStatement(
                 new CodeSnippetStatement(""),
                 testExpression,
-                new CodeSnippetStatement(""));
+                new CodeSnippetStatement(""),
+                statements);
         }
     }
 }
