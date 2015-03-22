@@ -151,6 +151,16 @@ namespace AphidCodeGenerator
             return Assign(VarRef(variableName), right);
         }
 
+        public static CodeMethodInvokeExpression Invoke(CodeExpression targetObject, string methodName, params CodeExpression[] parameters)
+        {
+            return new CodeMethodInvokeExpression(targetObject, methodName, parameters);
+        }
+
+        public static CodeMethodInvokeExpression Invoke(string methodName, params CodeExpression[] parameters)
+        {
+            return Invoke(This(), methodName, parameters);
+        }
+
         public static CodeIterationStatement While(CodeExpression testExpression)
         {
             return new CodeIterationStatement(
