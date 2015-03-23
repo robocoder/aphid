@@ -108,6 +108,11 @@ namespace AphidCodeGenerator
             return TypeRef(typeof(T));
         }
 
+        public static CodeTypeReference TypeRef(string typeName)
+        {
+            return new CodeTypeReference(typeName);
+        }
+
         public static CodeTypeReferenceExpression TypeRefExp(Type type)
         {
             return new CodeTypeReferenceExpression(type);
