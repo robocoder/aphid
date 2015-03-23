@@ -183,6 +183,11 @@ namespace AphidCodeGenerator
             return Assign(VarRef(variableName), right);
         }
 
+        public static CodeAssignStatement Assign(string leftVariableName, string rightVariableName)
+        {
+            return Assign(VarRef(leftVariableName), VarRef(rightVariableName));
+        }
+
         public static CodeMethodInvokeExpression Invoke(CodeExpression targetObject, string methodName, params CodeExpression[] parameters)
         {
             return new CodeMethodInvokeExpression(targetObject, methodName, parameters);
