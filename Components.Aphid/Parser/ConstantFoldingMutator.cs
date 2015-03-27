@@ -46,8 +46,8 @@ namespace Components.Aphid.Parser
                 return new List<AphidExpression> 
                 { 
                     new StringExpression(
-                        "'" + left.Substring(1, left.Length - 2) + 
-                        right.Substring(1, right.Length - 2) + "'")
+                        "'" + left.Substring(1, left.Length - 2).Replace("\\\"", "\"") + 
+                        right.Substring(1, right.Length - 2).Replace("\\\"", "\"") + "'")
                 };
             }
             else if (OperandsAre<NumberExpression>(binOp))
