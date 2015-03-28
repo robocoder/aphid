@@ -14,6 +14,7 @@ namespace Components.Aphid.Parser
         BreakExpression,
         CallExpression,
         WhileExpression,
+        DoWhileExpression,
         DynamicMemberExpression,
         ElseExpression,
         ExtendExpression,

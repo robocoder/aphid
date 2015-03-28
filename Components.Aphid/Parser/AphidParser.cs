@@ -728,6 +728,18 @@ namespace Components.Aphid.Parser
             return new WhileExpression(ParseCondition(), ParseBlock());
         }
 
+        private AphidExpression ParseDoWhileExpression()
+        {
+            NextToken();
+            var body = ParseBlock();
+            Match(AphidTokenType.whileKeyword);
+            Match(AphidTokenType.LeftParenthesis);
+            var condition = ParseExpression();
+            Match(AphidTokenType.RightParenthesis);
+
+            return new DoWhileExpression(condition, body);
+        }
+
         private List<AphidExpression> ParseTuple()
         {
             var tuple = new List<AphidExpression>();
@@ -869,6 +881,12 @@ namespace Components.Aphid.Parser
                 case AphidTokenType.whileKeyword:
                     return ParseWhileExpression();
 
+                case AphidTokenType.doKeyword:
+                    var exp = ParseDoWhileExpression();;
+                    Match(AphidTokenType.EndOfStatement);
+
+                    return exp;
+
                 case AphidTokenType.extendKeyword:
                     return ParseExtendExpression();
 
@@ -879,7 +897,7 @@ namespace Components.Aphid.Parser
                     return ParseSwitchExpression();
 
                 default:
-                    var exp = ParseExpression();
+                    exp = ParseExpression();
 
                     if (requireEos)
                     {
