@@ -1020,6 +1020,21 @@ namespace Components.Aphid.Interpreter
             }
         }
 
+        private void InterpretDoWhileExpression(DoWhileExpression expression)
+        {
+            do
+            {
+                EnterChildScope();
+                Interpret(expression.Body, false);
+
+                if (LeaveChildScope(true) || _isBreaking)
+                {
+                    _isBreaking = false;
+                    break;
+                }
+            } while ((bool)((AphidObject)(InterpretExpression(expression.Condition))).Value);
+        }
+
         private void InterpretTryBlock(TryExpression expression)
         {
             EnterChildScope();
@@ -1206,6 +1221,11 @@ namespace Components.Aphid.Interpreter
 
                 case AphidNodeType.WhileExpression:
                     InterpretWhileExpression((WhileExpression)expression);
+
+                    return null;
+
+                case AphidNodeType.DoWhileExpression:
+                    InterpretDoWhileExpression((DoWhileExpression)expression);
 
                     return null;
 
