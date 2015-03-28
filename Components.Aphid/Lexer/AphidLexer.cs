@@ -37,6 +37,7 @@ namespace Components.Aphid.Lexer
         DistinctOperator,
         DivisionEqualOperator,
         DivisionOperator,
+        doKeyword,
         elseKeyword,
         EndOfFile,
         EndOfStatement,
@@ -122,24 +123,25 @@ namespace Components.Aphid.Lexer
         public bool IsKeyword()
         {
             return TokenType == AphidTokenType.trueKeyword ||
-TokenType == AphidTokenType.falseKeyword ||
-TokenType == AphidTokenType.nullKeyword ||
-TokenType == AphidTokenType.ifKeyword ||
-TokenType == AphidTokenType.elseKeyword ||
-TokenType == AphidTokenType.switchKeyword ||
-TokenType == AphidTokenType.defaultKeyword ||
-TokenType == AphidTokenType.whileKeyword ||
-TokenType == AphidTokenType.forKeyword ||
-TokenType == AphidTokenType.inKeyword ||
-TokenType == AphidTokenType.breakKeyword ||
-TokenType == AphidTokenType.retKeyword ||
-TokenType == AphidTokenType.thisKeyword ||
-TokenType == AphidTokenType.definedKeyword ||
-TokenType == AphidTokenType.deleteKeyword ||
-TokenType == AphidTokenType.extendKeyword ||
-TokenType == AphidTokenType.tryKeyword ||
-TokenType == AphidTokenType.catchKeyword ||
-TokenType == AphidTokenType.finallyKeyword;
+                TokenType == AphidTokenType.falseKeyword ||
+                TokenType == AphidTokenType.nullKeyword ||
+                TokenType == AphidTokenType.ifKeyword ||
+                TokenType == AphidTokenType.elseKeyword ||
+                TokenType == AphidTokenType.switchKeyword ||
+                TokenType == AphidTokenType.defaultKeyword ||
+                TokenType == AphidTokenType.whileKeyword ||
+                TokenType == AphidTokenType.doKeyword ||
+                TokenType == AphidTokenType.forKeyword ||
+                TokenType == AphidTokenType.inKeyword ||
+                TokenType == AphidTokenType.breakKeyword ||
+                TokenType == AphidTokenType.retKeyword ||
+                TokenType == AphidTokenType.thisKeyword ||
+                TokenType == AphidTokenType.definedKeyword ||
+                TokenType == AphidTokenType.deleteKeyword ||
+                TokenType == AphidTokenType.extendKeyword ||
+                TokenType == AphidTokenType.tryKeyword ||
+                TokenType == AphidTokenType.catchKeyword ||
+                TokenType == AphidTokenType.finallyKeyword;
         }
     }
 
@@ -3587,6 +3589,48 @@ TokenType == AphidTokenType.finallyKeyword;
                                                 charIndex--;
 
                                                 return AphidTokenType.Identifier;
+                                            }
+                                        }
+                                        while (NextChar());
+
+                                        if (state == 1)
+                                        {
+                                            return AphidTokenType.Identifier;
+                                        }
+
+                                        break;
+
+                                    case 'o':
+
+
+                                        if (!NextChar())
+                                        {
+                                            return AphidTokenType.doKeyword;
+                                        }
+
+                                        state = 0;
+
+                                        do
+                                        {
+                                            if (((currentChar >= 'a' && currentChar <= 'z') ||
+                                                (currentChar >= 'A' && currentChar <= 'Z') ||
+                                                (currentChar >= '0' && currentChar <= '9') ||
+                                                currentChar == '_' ||
+                                                (currentChar >= '\u007f' && currentChar <= '\uffff')))
+                                            {
+                                                state = 1;
+                                            }
+                                            else if (state == 1)
+                                            {
+                                                charIndex--;
+
+                                                return AphidTokenType.Identifier;
+                                            }
+                                            else
+                                            {
+                                                charIndex--;
+
+                                                return AphidTokenType.doKeyword;
                                             }
                                         }
                                         while (NextChar());
