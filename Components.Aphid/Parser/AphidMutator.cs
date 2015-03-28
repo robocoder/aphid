@@ -128,6 +128,11 @@ namespace Components.Aphid.Parser
                     expanded.Add(new WhileExpression(Mutate(cfExp.Condition).Single(), Mutate(cfExp.Body)));
                     break;
 
+                case AphidNodeType.DoWhileExpression:
+                    var dwExp = (DoWhileExpression)expression;
+                    expanded.Add(new DoWhileExpression(Mutate(dwExp.Condition).Single(), Mutate(dwExp.Body)));
+                    break;
+
                 case AphidNodeType.LoadScriptExpression:
                     var lsExp = (LoadScriptExpression)expression;
                     expanded.Add(new LoadScriptExpression(Mutate(lsExp.FileExpression).Single()));
