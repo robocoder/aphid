@@ -16,6 +16,11 @@ namespace Components.Aphid.Parser
             return ast;
         }
 
+        private AphidExpression MutateSingle(AphidExpression expression)
+        {
+            return Mutate(expression).Single();
+        }
+
         public List<AphidExpression> Mutate(List<AphidExpression> ast)
         {
             if (ast == null)
@@ -88,6 +93,24 @@ namespace Components.Aphid.Parser
                         Mutate(binOp.LeftOperand).Single(),
                         binOp.Operator,
                         Mutate(binOp.RightOperand).Single()));
+
+                    break;
+
+                case AphidNodeType.SwitchExpression:
+                    var switchExp = (SwitchExpression)expression;
+
+                    expanded.Add(new SwitchExpression()
+                    {
+                        Expression = MutateSingle(switchExp.Expression),
+                        Cases = switchExp.Cases
+                            .Select(x => new SwitchCase() 
+                            {
+                                Cases = x.Cases.Select(MutateSingle).ToList(), 
+                                Body = x.Body.SelectMany(Mutate).ToList(),
+                            })
+                            .ToList(),
+                        DefaultCase = switchExp.DefaultCase.SelectMany(Mutate).ToList(),
+                    });
 
                     break;
 
