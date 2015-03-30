@@ -60,6 +60,7 @@ namespace Components.Aphid.VSPackage
                 case AphidTokenType.defaultKeyword:
                 case AphidTokenType.definedKeyword:
                 case AphidTokenType.deleteKeyword:
+                case AphidTokenType.doKeyword:
                 case AphidTokenType.elseKeyword:
                 case AphidTokenType.extendKeyword:
                 case AphidTokenType.falseKeyword:
