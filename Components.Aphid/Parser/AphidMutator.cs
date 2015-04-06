@@ -40,7 +40,7 @@ namespace Components.Aphid.Parser
             return ast2;
         }
 
-        public List<AphidExpression> Mutate(AphidExpression expression)
+        private List<AphidExpression> Mutate(AphidExpression expression)
         {
             bool hasChanged;
             var mutated = MutateCore(expression, out hasChanged);
