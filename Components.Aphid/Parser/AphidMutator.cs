@@ -9,6 +9,8 @@ namespace Components.Aphid.Parser
     {
         public bool HasMutated { get; private set; }
 
+        protected bool IsStatement { get; private set; }
+
         protected abstract List<AphidExpression> MutateCore(AphidExpression expression, out bool hasChanged);
 
         protected virtual List<AphidExpression> OnMutate(List<AphidExpression> ast)
@@ -34,6 +36,7 @@ namespace Components.Aphid.Parser
 
             foreach (var exp in ast)
             {
+                IsStatement = true;
                 ast2.AddRange(Mutate(exp));
             }
 
@@ -44,6 +47,7 @@ namespace Components.Aphid.Parser
         {
             bool hasChanged;
             var mutated = MutateCore(expression, out hasChanged);
+            IsStatement = false;
 
             if (hasChanged)
             {
