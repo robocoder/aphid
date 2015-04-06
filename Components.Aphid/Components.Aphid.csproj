@@ -97,6 +97,7 @@
     <Compile Include="Parser\AphidParser.g.cs" />
     <Compile Include="Parser\DoWhileExpression.cs" />
     <Compile Include="Parser\ExtendExpression.cs" />
+    <Compile Include="Parser\Fluent\AphidExpressionExtension.cs" />
     <Compile Include="Parser\ForExpression.cs" />
     <Compile Include="Parser\IncludeMutator.cs" />
     <Compile Include="Parser\IParentNode.cs" />

@@ -205,6 +205,7 @@ Components.Aphid/Parser/DoWhileExpression.cs -text
 Components.Aphid/Parser/DynamicMemberExpression.cs -text
 Components.Aphid/Parser/ElseExpression.cs -text
 Components.Aphid/Parser/ExtendExpression.cs -text
+Components.Aphid/Parser/Fluent/AphidExpressionExtension.cs -text
 Components.Aphid/Parser/ForEachExpression.cs -text
 Components.Aphid/Parser/ForExpression.cs -text
 Components.Aphid/Parser/FunctionExpression.cs -text
