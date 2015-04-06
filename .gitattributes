@@ -178,6 +178,8 @@ Components.Aphid/Library/Threading.alx -text
 Components.Aphid/Library/ThreadingLibrary.cs -text
 Components.Aphid/Library/Udp.alx -text
 Components.Aphid/Library/UdpLibrary.cs -text
+Components.Aphid/Parser/AphidAttributeAttribute.cs -text
+Components.Aphid/Parser/AphidAttributeParser.cs -text
 Components.Aphid/Parser/AphidExpression.cs -text
 Components.Aphid/Parser/AphidMacro.cs -text
 Components.Aphid/Parser/AphidMacroBodyMutator.cs -text
