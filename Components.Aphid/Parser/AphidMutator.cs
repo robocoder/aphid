@@ -46,8 +46,7 @@ namespace Components.Aphid.Parser
         private List<AphidExpression> Mutate(AphidExpression expression)
         {
             bool hasChanged;
-            var mutated = MutateCore(expression, out hasChanged);
-            IsStatement = false;
+            var mutated = MutateCore(expression, out hasChanged);            
 
             if (hasChanged)
             {
@@ -55,6 +54,7 @@ namespace Components.Aphid.Parser
                 return mutated.SelectMany(Mutate).ToList();
             }
 
+            IsStatement = false;
             var expanded = new List<AphidExpression>();
 
             switch (expression.Type)
@@ -110,10 +110,10 @@ namespace Components.Aphid.Parser
                             .Select(x => new SwitchCase() 
                             {
                                 Cases = x.Cases.Select(MutateSingle).ToList(), 
-                                Body = x.Body.SelectMany(Mutate).ToList(),
+                                Body = Mutate(x.Body),
                             })
                             .ToList(),
-                        DefaultCase = switchExp.DefaultCase.SelectMany(Mutate).ToList(),
+                        DefaultCase = Mutate(switchExp.DefaultCase),
                     });
 
                     break;
@@ -176,7 +176,7 @@ namespace Components.Aphid.Parser
                     expanded.Add(new FunctionExpression()
                     {
                         Args = funcExp.Args.Select(x => Mutate(x).Single()).ToList(),
-                        Body = funcExp.Body.SelectMany(x => Mutate(x)).ToList()
+                        Body = Mutate(funcExp.Body)
                     });
 
                     break;
