@@ -39,5 +39,11 @@ namespace Components.Aphid.Tests.Integration
         {
             Assert9("add=@(x)@(y)x+y; addFour=add(4); ret addFour(5);");
         }
+
+        [Test]
+        public void PartialFunctionTest()
+        {
+            Assert9("add=@(x, y)x+y; addFour=@add(4); ret addFour(5);");
+        }
     }
 }
