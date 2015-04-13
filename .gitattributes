@@ -100,6 +100,7 @@ Components.Aphid.Tests.Integration/MutatorTests.cs -text
 Components.Aphid.Tests.Integration/NullTests.cs -text
 Components.Aphid.Tests.Integration/OperatorTests.cs -text
 Components.Aphid.Tests.Integration/OrderOfOperationsTests.cs -text
+Components.Aphid.Tests.Integration/PatternMatchingTests.cs -text
 Components.Aphid.Tests.Integration/Properties/AssemblyInfo.cs -text
 Components.Aphid.Tests.Integration/PropertyTests.cs -text
 Components.Aphid.Tests.Integration/QueryTests.cs -text
