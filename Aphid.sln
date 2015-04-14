@@ -43,9 +43,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectSample", "Samples\Obj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ILWeave", "ILWeave\ILWeave.csproj", "{A0FAE839-87CE-4A92-8955-5B21787D951D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mantispid", "Mantispid\Mantispid.csproj", "{5404CE66-6322-49B2-8D42-CB06EBBAC715}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 21
+		SccNumberOfProjects = 22
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs08
 		SccLocalPath0 = .
@@ -118,6 +120,9 @@ Global
 		SccProjectUniqueName20 = ILWeave\\ILWeave.csproj
 		SccProjectName20 = ILWeave
 		SccLocalPath20 = ILWeave
+		SccProjectUniqueName21 = Mantispid\\Mantispid.csproj
+		SccProjectName21 = Mantispid
+		SccLocalPath21 = Mantispid
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -328,6 +333,16 @@ Global
 		{A0FAE839-87CE-4A92-8955-5B21787D951D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{A0FAE839-87CE-4A92-8955-5B21787D951D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{A0FAE839-87CE-4A92-8955-5B21787D951D}.Release|Win32.ActiveCfg = Release|Any CPU
+		{5404CE66-6322-49B2-8D42-CB06EBBAC715}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5404CE66-6322-49B2-8D42-CB06EBBAC715}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5404CE66-6322-49B2-8D42-CB06EBBAC715}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5404CE66-6322-49B2-8D42-CB06EBBAC715}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5404CE66-6322-49B2-8D42-CB06EBBAC715}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{5404CE66-6322-49B2-8D42-CB06EBBAC715}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5404CE66-6322-49B2-8D42-CB06EBBAC715}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5404CE66-6322-49B2-8D42-CB06EBBAC715}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5404CE66-6322-49B2-8D42-CB06EBBAC715}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5404CE66-6322-49B2-8D42-CB06EBBAC715}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
