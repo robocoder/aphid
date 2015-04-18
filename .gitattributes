@@ -106,6 +106,7 @@ Components.Aphid.Tests.Integration/PropertyTests.cs -text
 Components.Aphid.Tests.Integration/QueryTests.cs -text
 Components.Aphid.Tests.Integration/ScopeTests.cs -text
 Components.Aphid.Tests.Integration/StringTests.cs -text
+Components.Aphid.Tests.Integration/SwitchTests.cs -text
 Components.Aphid.Tests.Integration/ThisTests.cs -text
 Components.Aphid.Tests.Integration/TryCatchTests.cs -text
 Components.Aphid.Tests.Integration/packages.config -text

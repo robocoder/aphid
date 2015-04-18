@@ -53,6 +53,7 @@
     <Compile Include="MutatorTests.cs" />
     <Compile Include="LexerTests.cs" />
     <Compile Include="DynamicMemberTests.cs" />
+    <Compile Include="SwitchTests.cs" />
     <Compile Include="ThisTests.cs" />
     <Compile Include="InitTests.cs" />
     <Compile Include="QueryTests.cs" />
