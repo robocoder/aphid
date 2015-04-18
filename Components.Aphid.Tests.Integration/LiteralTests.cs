@@ -65,6 +65,24 @@ namespace Components.Aphid.Tests.Integration
         }
 
         [Test]
+        public void BinaryNumberTest()
+        {
+            AssertEquals(0, "ret 0b0;");
+        }
+
+        [Test]
+        public void BinaryNumberTest2()
+        {
+            Assert9("ret 0b1001;");
+        }
+
+        [Test]
+        public void BinaryNumberTest3()
+        {
+            Assert9("ret 0b00000000001001;");
+        }
+
+        [Test]
         public void StringTest()
         {
             AssertFoo("ret 'foo';");
