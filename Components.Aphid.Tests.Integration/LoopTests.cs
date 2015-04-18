@@ -33,5 +33,32 @@ namespace Components.Aphid.Tests.Integration
         {
             Assert9("x = 0; while (x < 50) { x++; if (x == 9) break; } ret x;");
         }
+
+        [Test]
+        public void DoWhileTest()
+        {
+            Assert9(@"
+                x = 0;
+                do {
+                    x++;
+                } while (x < 9);
+
+                ret x;
+            ");
+        }
+
+        [Test]
+        public void DoWhileTest2()
+        {
+            Assert9(@"
+                x = 0;
+                do {
+                    x++;
+                    if (x == 9) break;
+                } while (true);
+
+                ret x;
+            ");
+        }
     }
 }
