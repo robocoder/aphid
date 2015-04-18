@@ -47,6 +47,48 @@ namespace Components.Aphid.Tests.Integration
         }
 
         [Test]
+        public void DivisionTest()
+        {
+            Assert9("ret 27 / 3;");
+        }
+
+        [Test]
+        public void ModulusTest()
+        {
+            Assert9("ret 39 % 30;");
+        }
+
+        [Test]
+        public void BinaryAndTest()
+        {
+            Assert9("ret 9 & 11;");
+        }
+
+        [Test]
+        public void BinaryOrTest()
+        {
+            Assert9("ret 9 | 1;");
+        }
+
+        [Test]
+        public void BinaryXorTest()
+        {
+            Assert9("ret 32 ^ 41;");
+        }
+
+        [Test]
+        public void BinaryShiftLeftTest()
+        {
+            Assert9("ret (4 << 1) + 1;");
+        }
+
+        [Test]
+        public void BinaryShiftRightTest()
+        {
+            Assert9("ret 36 >> 2;");
+        }
+
+        [Test]
         public void AdditionAndAssignmentTest()
         {
             Assert9("x = 2; x += 7; ret x;");
