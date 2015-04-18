@@ -107,6 +107,7 @@ Components.Aphid.Tests.Integration/QueryTests.cs -text
 Components.Aphid.Tests.Integration/ScopeTests.cs -text
 Components.Aphid.Tests.Integration/StringTests.cs -text
 Components.Aphid.Tests.Integration/ThisTests.cs -text
+Components.Aphid.Tests.Integration/TryCatchTests.cs -text
 Components.Aphid.Tests.Integration/packages.config -text
 Components.Aphid.VSPackage/AphidAuthoringScope.cs -text
 Components.Aphid.VSPackage/AphidDeclaration.cs -text
