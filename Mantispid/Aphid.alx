@@ -7,69 +7,32 @@ parser AphidParser;
 ////////////////////////////////////////////////////////////////
 // Types
 ////////////////////////////////////////////////////////////////
-BinaryOperatorExpression = {
-	LeftOperand, 
-	AphidTokenType Operator, 
-	RightOperand 
-};
-
-UnaryOperatorExpression = {
-	AphidTokenType Operator,
-	Operand,
-	opt bool IsPostfix,	
-};
-
-CallExpression = {
-	FunctionExpression,
-	opt list Args,
-};
-
-TernaryOperatorExpression = {
-	AphidTokenType Operator,
-	FirstOperand,
-	SecondOperand,
-	ThirdOperand,
-};
-
-ArrayAccessExpression = {
-	ArrayExpression,
-	KeyExpression,
-};
-
-IdentifierExpression = {
-	string Identifier,
-	opt list IdentifierExpression Attributes,
-};
-
-IfExpression = {
-	Condition,
-	list Body,
-	list ElseBody,
-};
-
+BinaryOperatorExpression = { LeftOperand, AphidTokenType Operator, RightOperand };
+UnaryOperatorExpression = { AphidTokenType Operator, Operand, opt bool IsPostfix };
+CallExpression = { FunctionExpression, opt list Args };
+TernaryOperatorExpression = { AphidTokenType Operator, FirstOperand, SecondOperand, ThirdOperand };
+ArrayAccessExpression = { ArrayExpression, KeyExpression };
+IdentifierExpression = { string Identifier, opt list IdentifierExpression Attributes };
+IfExpression = { Condition, list Body, list ElseBody };
 DynamicMemberExpression = { foo foo };
-
-ExtendExpression = {
-	string ExtendType,
-	ObjectExpression Object,
-};
-
+ExtendExpression = { string ExtendType, ObjectExpression Object };
 ForEachExpression = { foo foo };
 ForExpression = { foo foo };
 WhileExpression = { foo foo };
 DoWhileExpression = { foo foo };
 LoadScriptExpression = { FileExpression };
 LoadLibraryExpression = { LibraryExpression };
-
-TryExpression = {
-	list TryBody,
-	IdentifierExpression CatchArg,
-	list CatchBody,	
-	list FinallyBody,
-};
-
+TryExpression = { list TryBody, IdentifierExpression CatchArg, list CatchBody, list FinallyBody };
 SwitchExpression = { foo foo };
 SwitchCase = { foo foo };
+StringExpression = { foo foo };
+ObjectExpression = { foo };
+ArrayExpression = { foo };
+FunctionExpression = { foo };
+PartialFunctionExpression = { foo };
+PatternMatchingExpression = { foo };
+PatternExpression = { foo };
+NumberExpression = { decimal Value, };
 
 ////////////////////////////////////////////////////////////////
 // Macros
@@ -375,8 +338,6 @@ ParseMemberExpression = @() {
 };
 
 ParseFactorCallExpression = ParseCall(ParseFactorExpression);
-
-StringExpression = { foo foo };
 ParseStringExpression = Lexeme |> StringExpression |> ThenSkip;
 ParseFactorExpression = @() { };
 
@@ -563,8 +524,6 @@ ParseSwitchExpression = @() {
 
 ParseObjectExpression = @() { };
 
-ObjectExpression = { foo };
-
 ObjectExpression ParseObjectExpression = @() {
 	NextToken;
 	inNode = true;
@@ -597,8 +556,6 @@ ObjectExpression ParseObjectExpression = @() {
 
 	ret ObjectExpression(childNodes);
 };
-
-ArrayExpression = { foo };
 
 ParseArrayExpression = @() {
     NextToken;
@@ -648,18 +605,12 @@ BinaryOperatorExpression ParseKeyValuePairExpression = @() {
     ret BinaryOperatorExpression(id, ColonOperator, exp);
 };
 
-NumberExpression = { decimal Value, };
-
 ParseNumberExpression = @(){
     exp = NumberExpression(decimal.Parse(Lexeme));
     NextToken;
     
 	ret exp;
 };
-
-FunctionExpression = { foo };
-
-PartialFunctionExpression = { foo };
 
 ParseFunctionExpression = @() {
     exp;
@@ -711,9 +662,6 @@ ParseFunctionExpression = @() {
 
     ret exp;
 };
-
-PatternMatchingExpression = { foo };
-PatternExpression = { foo };
 
 ParsePatternMatchingExpression2 = @() {
 	NextToken;
