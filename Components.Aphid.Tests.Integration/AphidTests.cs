@@ -98,5 +98,35 @@ namespace Components.Aphid.Tests.Integration
         {
             AssertEquals(false, script);
         }
+
+        private string CreateStatement(string expression)
+        {
+            return string.Format("ret {0};", expression);
+        }
+
+        protected void AssertExpEquals(object expected, string expression)
+        {
+            AssertEquals(expected, CreateStatement(expression));
+        }
+
+        protected void AssertExpFoo(string expression)
+        {
+            AssertFoo(CreateStatement(expression));
+        }
+
+        protected void AssertExp9(string expression)
+        {
+            Assert9(CreateStatement(expression));
+        }
+
+        protected void AssertExpTrue(string expression)
+        {
+            AssertTrue(CreateStatement(expression));
+        }
+
+        protected void AssertExpFalse(string expression)
+        {
+            AssertFalse(CreateStatement(expression));
+        }
     }
 }
