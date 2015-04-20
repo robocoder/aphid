@@ -189,5 +189,29 @@ namespace Components.Aphid.Tests.Integration
         {
             Assert9("ret (0 .. 10)[9];");
         }
+
+        [Test]
+        public void PrefixIncrementTest()
+        {
+            Assert9("x = 8; x++; ret x;");
+        }
+
+        [Test]
+        public void PrefixIncrementTest2()
+        {
+            Assert9("x = 9; ret x++;");
+        }
+
+        [Test]
+        public void PostfixIncrementTest()
+        {
+            Assert9("x = 8; ++x; ret x;");
+        }
+
+        [Test]
+        public void PostfixIncrementTest2()
+        {
+            Assert9("x = 8; ret ++x;");
+        }
     }
 }
