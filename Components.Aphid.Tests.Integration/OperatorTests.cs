@@ -10,6 +10,14 @@ namespace Components.Aphid.Tests.Integration
     [TestFixture(Category = "AphidOperator")]
     public class OperatorTests : AphidTests
     {
+        protected override bool LoadStd
+        {
+            get
+            {
+                return true;
+            }
+        }
+
         [Test]
         public void AssignmentTest()
         {
@@ -212,6 +220,54 @@ namespace Components.Aphid.Tests.Integration
         public void PostfixIncrementTest2()
         {
             Assert9("x = 8; ret ++x;");
+        }
+
+        [Test]
+        public void SelectOperatorTest()
+        {
+            AssertExp9(@"([ '1', '2', '9']->(@(x) num(x)))[2]");
+        }
+
+        [Test]
+        public void SelectManyOperatorTest()
+        {
+            AssertExp9(@"([ 2, 3 ]-<(@(x) [ x, x*x ]))[3]");
+        }
+
+        [Test]
+        public void WhereOperatorTest()
+        {
+            AssertExp9("([ 2, 9, 10, 20 ]-?(@(x) (x & 1) == 1))[0]");
+        }
+
+        [Test]
+        public void AggregateOperatorTest()
+        {
+            AssertExpFoo("[ 'f', 'o' ]+>(@(x, y) x + 'o' + y)");
+        }
+
+        [Test]
+        public void AnyOperatorTest()
+        {
+            AssertExpTrue("'hello world'.chars()=?(@(x) x == 'r')");
+        }
+
+        [Test]
+        public void AnyOperatorTest2()
+        {
+            AssertExpFalse("'hello world'.chars()=?(@(x) x == 'z')");
+        }
+
+        [Test]
+        public void DistinctOperatorTest()
+        {
+            AssertExpEquals(1, "([ 2, 2, 2, ]!?).count()");
+        }
+
+        [Test]
+        public void DistinctOperatorTest2()
+        {
+            AssertExpEquals(3, "([ 1, 1, 1, 2, 2, 2, 3, 3, 3 ]!?).count()");
         }
     }
 }
