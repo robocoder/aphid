@@ -33,6 +33,10 @@ PartialFunctionExpression = { foo };
 PatternMatchingExpression = { foo };
 PatternExpression = { foo };
 NumberExpression = { decimal Value, };
+BooleanExpression = { foo };
+ThisExpression = { foo };
+NullExpression = { foo };
+BreakExpression = { foo };
 
 ////////////////////////////////////////////////////////////////
 // Macros
@@ -663,10 +667,116 @@ ParseFunctionExpression = @() {
     ret exp;
 };
 
-ParsePatternMatchingExpression2 = @() {
+ParsePatternMatchingExpression = @() {
 	NextToken;
-	patterns;
+	patterns = list PatternExpression;
 	Parens(testExp ParseExpression);
-	System.Convert.ToInt64(_currentToken.Lexeme.Substring(2), 16);
-    ret null;
+
+	while (true) {
+		tuple;
+
+		while (true) {
+			// Todo: add list support for varName funcName syntax
+			tuple += ParseExpression();
+
+			if (Comma) NextToken;
+			else break;
+		}
+
+		valueExp;
+
+		if (ColonOperator) {
+			NextToken;
+			valueExp ParseExpression;
+			patterns += PatternExpression(tuple, valueExp);
+		} else {
+			if (tuple.Count != 1) {	
+				// todo: Error
+			}
+
+			patterns += PatternExpression(tuple[0]);
+		}
+
+		if (Comma) NextToken;
+		else break;
+	}
+	//System.Convert.ToInt64(_currentToken.Lexeme.Substring(2), 16);
+    ret PatternMatchingExpression(testExp, patterns);
+};
+
+
+ParseFactorExpression = @() {
+    exp;
+    
+	switch (TokenType) {
+        LeftBrace: exp ParseObjectExpression;
+		LeftBracket: exp ParseArrayExpression;
+
+		LeftParenthesis: {
+            NextToken;
+            exp ParseExpression;
+            RightParenthesis;
+		}
+
+        String: exp ParseStringExpression;
+		Number: exp ParseNumberExpression;
+
+		Identifier: {
+			exp ParseIdentifierExpression;
+
+            if (definedKeyword) {
+                NextToken;
+                exp = UnaryOperatorExpression(definedKeyword, exp, true);
+            }
+		}
+
+		functionOperator: exp ParseFunctionExpression;
+        retKeyword, deleteKeyword: exp ParseUnaryExpression;
+
+		trueKeyword: {
+			exp = BooleanExpression(true);
+            NextToken;
+		}
+
+        falseKeyword: {
+			exp = BooleanExpression(false);
+			NextToken;
+		}
+
+        thisKeyword: {
+			exp = ThisExpression();
+            NextToken;
+		}
+
+		LoadScriptOperator: exp ParseLoadScriptExpression;
+        LoadLibraryOperator: exp ParseLoadLibraryExpression;
+        
+		nullKeyword: {
+            exp = NullExpression();
+            NextToken;
+		}
+
+        breakKeyword: {
+			exp = BreakExpression();
+            NextToken;
+		}
+
+		HexNumber: {
+			exp = NumberExpression(System.Convert.ToInt64(_currentToken.Lexeme.Substring(2), 16));
+            NextToken;
+		}
+
+        BinaryNumber: {
+            exp = NumberExpression(BinaryNumber.Parse(_currentToken.Lexeme.Substring(2)));
+            NextToken;
+		}
+
+        PatternMatchingOperator: exp ParsePatternMatchingExpression;
+
+        default: {
+			//Todo: error   
+		}
+    }
+
+    ret exp;
 };
