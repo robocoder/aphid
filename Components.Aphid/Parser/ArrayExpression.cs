@@ -14,6 +14,15 @@ namespace Components.Aphid.Parser
 
         public List<AphidExpression> Elements { get; set; }
 
+        public ArrayExpression()
+        {
+        }
+
+        public ArrayExpression(List<AphidExpression> elements)
+        {
+            Elements = elements;
+        }
+
         public IEnumerable<AphidExpression> GetChildren()
         {
             return Elements;

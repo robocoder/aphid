@@ -975,24 +975,27 @@ namespace Components.Aphid.Interpreter
         {
             var left = (AphidObject)InterpretExpression(expression.TestExpression);
 
-            foreach (var p in expression.Patterns)
+            foreach (var pattern in expression.Patterns)
             {
-                if (p.Item1 != null)
+                if (pattern.Patterns != null)
                 {
-                    var right = (AphidObject)InterpretExpression(p.Item1);
-
-                    var b = left.Value != null ?
-                        left.Value.Equals(right.Value) :
-                        (null == right.Value && left.Count == 0 && right.Count == 0);
-
-                    if (b)
+                    foreach (var patternTest in pattern.Patterns)
                     {
-                        return ValueHelper.Wrap(InterpretExpression(p.Item2));
+                        var right = (AphidObject)InterpretExpression(patternTest);
+
+                        var b = left.Value != null ?
+                            left.Value.Equals(right.Value) :
+                            (null == right.Value && left.Count == 0 && right.Count == 0);
+
+                        if (b)
+                        {
+                            return ValueHelper.Wrap(InterpretExpression(pattern.Value));
+                        }
                     }
                 }
                 else
                 {
-                    return ValueHelper.Wrap(InterpretExpression(p.Item2));
+                    return ValueHelper.Wrap(InterpretExpression(pattern.Value));
                 }
             }
 

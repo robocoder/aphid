@@ -17,6 +17,16 @@ namespace Components.Aphid.Parser
 
         public List<AphidExpression> Body { get; set; }
 
+        public FunctionExpression()
+        {
+        }
+
+        public FunctionExpression(List<AphidExpression> args, List<AphidExpression> body)
+        {
+            Args = args;
+            Body = body;
+        }
+
         public override string ToString ()
         {
             return string.Format ("@({0}) {{ {1} }}", 

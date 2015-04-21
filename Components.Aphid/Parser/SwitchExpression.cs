@@ -18,6 +18,17 @@ namespace Components.Aphid.Parser
 
         public List<AphidExpression> DefaultCase { get; set; }
 
+        public SwitchExpression()
+        {
+        }
+
+        public SwitchExpression(AphidExpression expression, List<SwitchCase> cases, List<AphidExpression> defaultCase)
+        {
+            Expression = expression;
+            Cases = cases;
+            DefaultCase = defaultCase;
+        }
+
         public IEnumerable<AphidExpression> GetChildren()
         {
             return new[] { Expression }

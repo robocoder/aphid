@@ -23,6 +23,11 @@ namespace Components.Aphid.Parser
             Call = call;
         }
 
+        public PartialFunctionExpression(AphidExpression call)
+            : this ((CallExpression)call)
+        {
+        }
+
         public IEnumerable<AphidExpression> GetChildren()
         {
             return new[] { Call };

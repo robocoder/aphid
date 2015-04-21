@@ -14,16 +14,17 @@ namespace Components.Aphid.Parser
 
         public AphidExpression TestExpression { get; set; }
 
-        public List<Tuple<AphidExpression, AphidExpression>> Patterns { get; set; }
+        public List<PatternExpression> Patterns { get; set; }
 
-        public PatternMatchingExpression()
+        public PatternMatchingExpression(AphidExpression testExpression, List<PatternExpression> patterns)
         {
-            Patterns = new List<Tuple<AphidExpression, AphidExpression>>();
+            TestExpression = testExpression;
+            Patterns = patterns;
         }
 
         public IEnumerable<AphidExpression> GetChildren()
         {
-            return new[] { TestExpression }.Concat(Patterns.SelectMany(x => new[] { x.Item1, x.Item2 }));
+            return new[] { TestExpression }.Concat(Patterns);
         }
     }
 }

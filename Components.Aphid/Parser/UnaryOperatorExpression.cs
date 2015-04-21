@@ -26,6 +26,13 @@ namespace Components.Aphid.Parser
             Operand = operand;
         }
 
+        public UnaryOperatorExpression(AphidTokenType op, AphidExpression operand, bool isPostfix)
+        {
+            Operator = op;
+            Operand = operand;
+            IsPostfix = isPostfix;
+        }
+
         public override string ToString ()
         {
             return IsPostfix ? 

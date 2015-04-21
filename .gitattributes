@@ -224,6 +224,7 @@ Components.Aphid/Parser/NumberExpression.cs -text
 Components.Aphid/Parser/ObjectExpression.cs -text
 Components.Aphid/Parser/ParserErrorMessage.cs -text
 Components.Aphid/Parser/PartialFunctionExpression.cs -text
+Components.Aphid/Parser/PatternExpression.cs -text
 Components.Aphid/Parser/PatternMatchingExpression.cs -text
 Components.Aphid/Parser/PipelineToCallMutator.cs -text
 Components.Aphid/Parser/Statement.cs -text

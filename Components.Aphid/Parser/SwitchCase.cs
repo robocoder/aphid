@@ -15,5 +15,15 @@ namespace Components.Aphid.Parser
         {
             return Cases.Concat(Body);
         }
+
+        public SwitchCase(List<AphidExpression> cases, List<AphidExpression> body)
+        {
+            Cases = cases;
+            Body = body;
+        }
+
+        public SwitchCase()
+        {
+        }
     }
 }

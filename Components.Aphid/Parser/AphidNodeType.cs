@@ -30,6 +30,7 @@ namespace Components.Aphid.Parser
         NumberExpression,
         ObjectExpression,
         PartialFunctionExpression,
+        PatternExpression,
         PatternMatchingExpression,
         StringExpression,
         SwitchExpression,
