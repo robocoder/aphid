@@ -18,6 +18,11 @@ namespace Mantispid
 
         public string ParserClass { get; private set; }
 
+        public string ExceptionClass
+        {
+            get { return ParserClass + "Exception"; }
+        }
+
         public ParserGeneratorConfig(
             string tokenType,
             string baseClass,

@@ -532,13 +532,27 @@ namespace Mantispid
         private CodeStatementCollection GenerateImperativeStatement(IdentifierExpression node)
         {
             var parserId = ParserIdentifier.FromIdentifierExpression(node);
-            var typeRef = CodeHelper.TypeRef(parserId.Type ?? _config.BaseClass);
-            typeRef = parserId.IsList ? GetListTypeRef(typeRef) : typeRef;
-            var init = new CodeDefaultValueExpression(typeRef);
-            var varDecl = new CodeVariableDeclarationStatement(typeRef, node.Identifier, init);
-            _scope.Add(node.Identifier, new AphidObject());
 
-            return new CodeStatementCollection(new[] { varDecl });
+            if (parserId.Name != "Error")
+            {
+                var typeRef = CodeHelper.TypeRef(parserId.Type ?? _config.BaseClass);
+                typeRef = parserId.IsList ? GetListTypeRef(typeRef) : typeRef;
+                var init = new CodeDefaultValueExpression(typeRef);
+                var varDecl = new CodeVariableDeclarationStatement(typeRef, node.Identifier, init);
+                _scope.Add(node.Identifier, new AphidObject());
+
+                return new CodeStatementCollection(new[] { varDecl });
+            }
+            else
+            {
+                return new CodeStatementCollection(new[]
+                {
+                    new CodeThrowExceptionStatement(
+                        new CodeObjectCreateExpression(
+                            _config.ExceptionClass,
+                            CodeHelper.VarRef("_currentToken")))
+                });
+            }
         }
 
         private CodeStatementCollection GenerateImperativeStatement(UnaryOperatorExpression node)
