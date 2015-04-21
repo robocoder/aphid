@@ -322,10 +322,7 @@ ParseMemberExpression = @() {
 				RightBrace;
 			}
 
-			default: {
-				// Todo: exception handling
-				//throw new AphidParserException(_currentToken);
-			}
+			default: Error;
 		}
 
 		factor = BinaryOperatorExpression(factor, MemberOperator, exp);
@@ -492,10 +489,7 @@ ParseTryExpression = @() {
 			finallyBody ParseBlock;
 		}
 
-		default: {
-			ret null;
-			// Todo: add parser throw
-		}
+		default: Error;
 	}
 
 	ret TryExpression(tryBody, catchArg, catchBody, finallyBody);
@@ -543,18 +537,14 @@ ObjectExpression ParseObjectExpression = @() {
 						NextToken;
 						inNode = false;
 					}
-					default: {
-						// Todo: error
-					}
+					default: Error;
 				}
 			}
 			RightBrace: {
 				NextToken;
 				inNode = false;
 			}
-			default: {
-				// Todo: error
-			}
+			default: Error;
 		}
 	}
 
@@ -583,9 +573,7 @@ ParseArrayExpression = @() {
                     NextToken;
                     inNode = false;
                 }
-                default: {
-                    // Todo: error
-				}
+                default: Error;
             }
         }
     } else {
@@ -643,7 +631,7 @@ ParseFunctionExpression = @() {
 						if (Comma) NextToken;
 						else break;
                     } else {
-                        // Todo: error
+                        Error;
                     }
                 }
             }
@@ -690,9 +678,7 @@ ParsePatternMatchingExpression = @() {
 			valueExp ParseExpression;
 			patterns += PatternExpression(tuple, valueExp);
 		} else {
-			if (tuple.Count != 1) {	
-				// todo: Error
-			}
+			if (tuple.Count != 1) Error;
 
 			patterns += PatternExpression(tuple[0]);
 		}
@@ -700,7 +686,7 @@ ParsePatternMatchingExpression = @() {
 		if (Comma) NextToken;
 		else break;
 	}
-	//System.Convert.ToInt64(_currentToken.Lexeme.Substring(2), 16);
+	
     ret PatternMatchingExpression(testExp, patterns);
 };
 
@@ -772,10 +758,7 @@ ParseFactorExpression = @() {
 		}
 
         PatternMatchingOperator: exp ParsePatternMatchingExpression;
-
-        default: {
-			//Todo: error   
-		}
+        default: Error;
     }
 
     ret exp;
