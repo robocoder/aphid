@@ -195,7 +195,7 @@ namespace AphidCodeGenerator
 
         public static CodeMethodInvokeExpression Invoke(string methodName, params CodeExpression[] parameters)
         {
-            return Invoke(This(), methodName, parameters);
+            return Invoke(null, methodName, parameters);
         }
 
         public static CodeIterationStatement While(CodeExpression testExpression, params CodeStatement[] statements)
